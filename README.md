@@ -10,6 +10,10 @@ This year’s game is about seizing castles by launching boulders through a high
 The objective of our robot this year is to break the defences. The robot will have the capability to go through all obstacles with ease while passing up boulders to a member of the same alliance. If required, our robot will be able to score in the low goal. To add, our robot will have the capability to climb by the end of the match to score points. 
 
 ### Subsystems
+1. Drive Train
+2. Scoop
+3. Climber 
+  
 - Drive Train
 
  In the Drive Train, we have 4 wheels that can adjust the height of our drive train with pneumatics. Only the back wheels are powered as the front wheels are unpowered omni-wheels. We have two gear boxes with Greyhound encoders on each side.  We have a gyro and accelerometer to measure the angle of our robot. Ultrasonic sensors will be used in autonomous when crossing obstacles.
