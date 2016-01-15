@@ -26,10 +26,10 @@ The objective of our robot this year is to break the defences. The robot will ha
 | Tasks (Obstacles) | Sensors | Problems | Solutions | Difficulty (_/5) (Auto) |
 | ---- |:------- |:-------- |:--------- |:---------------- |
 | Low Bar | Optional: Ultrasonic, Gyro, Camera | Keep under the height of 1ft 4”. Mind the Angle of Ramp | Adjust back wheels/Drive Straight Through Keep in down position. | 1 |
-| Portcullis(Gate) |  | | | 2 |
-| Cheeval de Frise (Dynamic Ramps) | | | | 3 |
-| Moat | | | | 2 |
-| Ramparts | | | | 2 |
+| Portcullis(Gate) | Required: Ultrasonic, Potentiometer Optional: Gyro, Camera | Lift the gate while moving straight. Need to know distance of gate from robot. | Either Lift Gate/ Drive Straight Through. Keep in down position. | 2 |
+| Cheeval de Frise (Dynamic Ramps) | Required: Ultrasonic, Potentiometer Optional: Gyro, Camera | Dynamic Ramps means we need to push down the  ramps that aren’t aligned | Push down the ramps that aren’t aligned and drive through. Keep in down position. | 3 |
+| Moat | Required: Ultrasonic, Potentiometer Optional: Gyro, Camera | Drive over a bump right after the ramp. | Push through. Keep in up position. | 2 |
+| Ramparts | Required: Ultrasonic, Potentiometer Optional: Gyro, Camera | Drive over fixed ramps going on opposite directions. | Drive through. Maybe adjust each side. Keep in up position. | 2 |
 | Drawbridge (Bridge) | | | | 4 |
 | Sally Port (Door) | | | | 5 |
 | Rock Wall | | | | 2 |
