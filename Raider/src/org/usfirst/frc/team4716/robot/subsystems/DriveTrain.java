@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4716.robot.subsystems;
 
+import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
@@ -12,6 +13,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -64,6 +66,11 @@ public class DriveTrain extends Subsystem {
 		LiveWindow.addActuator("DriveTrain", "Front Right CIM", (Victor) MOTOR_DRIVE_FRONT_RIGHT);
 		LiveWindow.addActuator("DriveTrain", "Back Left CIM", (Victor) MOTOR_DRIVE_BACK_LEFT);
 		LiveWindow.addActuator("DriveTrain", "Back Right CIM", (Victor) MOTOR_DRIVE_BACK_RIGHT);
+		
+		LiveWindow.addActuator("DriveTrain", "Front Left Piston", (Solenoid) SOLENOID_DRIVE_FRONT_LEFT);
+		LiveWindow.addActuator("DriveTrain", "Front Right Piston", (Solenoid) SOLENOID_DRIVE_FRONT_RIGHT);
+		LiveWindow.addActuator("DriveTrain", "Back Left Piston", (Solenoid) SOLENOID_DRIVE_BACK_LEFT);
+		LiveWindow.addActuator("DriveTrain", "Back Right Piston", (Solenoid) SOLENOID_DRIVE_BACK_RIGHT);
 	}
 
     public void initDefaultCommand() {
@@ -93,18 +100,32 @@ public class DriveTrain extends Subsystem {
     	drive.arcadeDrive(speed,turn);
     }
     
-    public void upPosition(){
+    public void setUpPosition(){
     	SOLENOID_DRIVE_FRONT_LEFT.set(true);
 		SOLENOID_DRIVE_FRONT_RIGHT.set(true);
 		SOLENOID_DRIVE_BACK_LEFT.set(true);
 		SOLENOID_DRIVE_BACK_RIGHT.set(true);
     }
     
-    public void downPosition(){
+    public void setDownPosition(){
     	SOLENOID_DRIVE_FRONT_LEFT.set(false);
 		SOLENOID_DRIVE_FRONT_RIGHT.set(false);
 		SOLENOID_DRIVE_BACK_LEFT.set(false);
 		SOLENOID_DRIVE_BACK_RIGHT.set(false);
+    }
+    
+    public void setFrontUpPoisiton(){
+    	SOLENOID_DRIVE_FRONT_LEFT.set(true);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(true);
+		SOLENOID_DRIVE_BACK_LEFT.set(false);
+		SOLENOID_DRIVE_BACK_RIGHT.set(false);
+    }
+    
+    public void setBackUpPosition(){
+    	SOLENOID_DRIVE_FRONT_LEFT.set(false);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(false);
+		SOLENOID_DRIVE_BACK_LEFT.set(true);
+		SOLENOID_DRIVE_BACK_RIGHT.set(true);
     }
     
     public double getUltrasonicDistance(){
@@ -113,6 +134,10 @@ public class DriveTrain extends Subsystem {
     
     public double getEncoderDistance(){
     	return (encoderDriveLeft.getDistance() + encoderDriveRight.getDistance()) / 2;
+    }
+    
+    public double getEncoderDelta(){
+    	return (encoderDriveLeft.getDistance() - encoderDriveRight.getDistance());
     }
     
     // AUTONOMOUS METHODS
@@ -153,6 +178,17 @@ public class DriveTrain extends Subsystem {
     		leftpow = _speed - (gyro.getAngle()/_angle) * _speed;
     		tankDrive(leftpow,0);
     	}
+    }
+    
+    
+    // LOG
+    public void log(){
+    	SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
+		SmartDashboard.putNumber("Gyro Rate", gyro.getRate());
+		SmartDashboard.putNumber("Right Drive Encoder", -encoderDriveLeft.getDistance());
+		SmartDashboard.putNumber("Left Drive Encoder", encoderDriveRight.getDistance());
+		SmartDashboard.putNumber("Delta Encoder",getEncoderDelta());
+		SmartDashboard.putNumber("Drive Speed", Robot.oi.getJoyY());
     }
 }
 

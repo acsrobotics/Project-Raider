@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4716.robot;
 
+import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -32,7 +33,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-//        chooser.addDefault("Nothing", new ExampleCommand());
+        chooser.addDefault("Nothing", new DoNothing());
 //        chooser.addObject("Low Goal", object);
         SmartDashboard.putData("Auto mode", chooser);
     }
