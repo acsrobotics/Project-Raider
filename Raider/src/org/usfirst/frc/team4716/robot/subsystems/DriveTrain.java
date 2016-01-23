@@ -1,9 +1,9 @@
 package org.usfirst.frc.team4716.robot.subsystems;
 
 import org.usfirst.frc.team4716.robot.RobotMap;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -67,8 +67,7 @@ public class DriveTrain extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new JoystickDrive());
     }
     
     public void reset(){
