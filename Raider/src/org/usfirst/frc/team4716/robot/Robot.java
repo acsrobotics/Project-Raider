@@ -1,6 +1,10 @@
 
 package org.usfirst.frc.team4716.robot;
 
+import java.io.FileReader;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 
@@ -21,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static final DriveTrain drivetrain = new DriveTrain();
+	JSONParser parser = new JSONParser();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -31,6 +36,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	initializeJSON();
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addDefault("Nothing", new DoNothing());
@@ -105,5 +111,15 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void initializeJSON(){
+
+    	try {
+    		Object obj = parser.parse(new FileReader("meme.json"));
+    		JSONObject jsonObject = (JSONObject)obj;
+    	} catch (Exception e){
+    		System.out.println("Error, you don't know how to parse properly");
+    	}
     }
 }
