@@ -41,6 +41,8 @@ public class RobotMap {
 	public static final int ULTRASONIC_LEFT_PORT = 0,
 							ULTRASONIC_RIGHT_PORT = 0;
 	
+	public static double DRIVE_MODIFIER = 1.0;
+	
 	
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.

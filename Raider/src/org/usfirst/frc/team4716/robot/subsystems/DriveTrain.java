@@ -40,6 +40,8 @@ public class DriveTrain extends Subsystem {
 	
 	RobotDrive 				drive;
 	
+	public boolean 	objectDetected;
+	
 	public DriveTrain(){
 		MOTOR_DRIVE_FRONT_LEFT = new Victor(RobotMap.MOTOR_DRIVE_FRONT_LEFT_PORT);
 		MOTOR_DRIVE_FRONT_RIGHT = new Victor(RobotMap.MOTOR_DRIVE_FRONT_RIGHT_PORT);
@@ -97,7 +99,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(double speed, double turn){
-    	drive.arcadeDrive(speed,turn);
+    	drive.arcadeDrive(speed * RobotMap.DRIVE_MODIFIER,turn * RobotMap.DRIVE_MODIFIER);
     }
     
     public void setUpPosition(){
@@ -128,6 +130,14 @@ public class DriveTrain extends Subsystem {
 		SOLENOID_DRIVE_BACK_RIGHT.set(true);
     }
     
+    public void setObjectState(boolean set){
+    	this.objectDetected = set;
+    }
+    
+    public boolean getObjectState(){
+    	return this.objectDetected;
+    }
+    
     public double getUltrasonicDistance(){
     	return (ultrasonicLeft.getRangeInches() + ultrasonicRight.getRangeInches())/2;
     }
@@ -139,6 +149,11 @@ public class DriveTrain extends Subsystem {
     public double getEncoderDelta(){
     	return (encoderDriveLeft.getDistance() - encoderDriveRight.getDistance());
     }
+    
+    public double getGyro(){
+    	return gyro.getAngle();
+    }
+    
     
     // AUTONOMOUS METHODS
     
