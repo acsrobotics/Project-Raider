@@ -6,6 +6,7 @@ import java.io.FileReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
+import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -25,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static final DriveTrain drivetrain = new DriveTrain();
+	public static final Climber climber = new Climber();
 	JSONParser parser = new JSONParser();
 	public static OI oi;
 
