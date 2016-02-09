@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4716.robot.subsystems;
 
+import org.usfirst.frc.team4716.robot.Robot;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -64,6 +66,14 @@ public class Climber extends Subsystem {
     	} else {
     		EXTENSION_MOTOR.set(0);
     	}
+    }
+    
+    public double getExtensionEncoderDistance() {
+    	return extensionEncoder.getDistance();
+    }
+    
+    public double getAngleEncoderDistance() {
+    	return angleEncoder.getDistance();
     }
     
 }
