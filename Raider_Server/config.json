@@ -1,0 +1,33 @@
+{
+	"motor_ports": {
+		"front_left": 0,
+		"front_right": 1,
+		"back_left": 2,
+		"back_right": 3
+	},
+
+	"solenoid_ports": {
+		"front_left": 0,
+		"front_right": 1,
+		"back_left": 2,
+		"back_right": 3
+	},
+
+	"sensor_configs": {
+		"gyro": {
+			"port": 0,
+			"sensitivity": 0.007
+		},
+		"encoder_ports": {
+			"front_left": 0,
+			"front_right": 0,
+			"back_left": 0,
+			"back_right": 0
+		},
+		"ultrasonic_ports": {
+			"left": 0,
+			"right": 0
+		}
+	}
+
+}
