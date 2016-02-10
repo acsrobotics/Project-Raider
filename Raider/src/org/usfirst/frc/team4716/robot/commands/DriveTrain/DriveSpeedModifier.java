@@ -22,9 +22,9 @@ public class DriveSpeedModifier extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(mod <= 1.0 && mod >= 1.0){
-    		RobotMap.DRIVE_MODIFIER = mod;
-    	}
+//    	if(mod <= 1.0 && mod >= 1.0){
+//    		RobotMap.DRIVE_MODIFIER = mod;
+//    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
