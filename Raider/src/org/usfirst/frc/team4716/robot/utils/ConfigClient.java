@@ -2,10 +2,6 @@ package org.usfirst.frc.team4716.robot.utils;
 
 import org.json.*;
 import org.usfirst.frc.team4716.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import java.awt.peer.RobotPeer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -22,17 +18,39 @@ public class ConfigClient {
 		ConfigClient.port       = port;
 	}
 	
-	public static void UpdateRobotConfig(){
+	public static void initConfigUpdate(){
 		if(queryServer()){
-			ConfigClient.parseResult();
+			parseBootTimeResult();
 		}else{
-			RobotMap.TEST_SPEED = 0.0;
+			bootTimeFallback();
 		}
 	}
 	
-	private static void parseResult(){
+	public static void runtimeConfigUpdate(){
+		if(queryServer()){
+			parseRuntimeResult();
+		}else{
+			runtimeFallback();
+		}
+	}
+	
+	private static void bootTimeFallback(){
+		// TODO 
+	}
+	
+	private static void runtimeFallback(){
+		// TODO finish error handling routine in case the server query fails
+	}
+	
+	private static void parseBootTimeResult(){
+		// TODO parse everything 
+	}
+	
+	private static void parseRuntimeResult(){
+		// TODO only parse variable such as speed as rate 
+		
 		JSONObject root = new JSONObject(ConfigClient.configJsonText);
-		RobotMap.TEST_SPEED = root.getDouble("speed");
+		//RobotMap.TEST_SPEED = root.getDouble("speed");
 		System.out.println("OEHHEHEHEHEH : " + root.getDouble("speed"));
 		// just trying to mess with gyro port for experiment 
 		//RobotMap.gyroPort = root.getJSONObject("sensor_configs")
