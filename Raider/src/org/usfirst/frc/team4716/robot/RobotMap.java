@@ -6,7 +6,9 @@ import org.json.simple.parser.JSONParser;
 
 public class RobotMap {
 	
-				
+	
+	//---------------DRIVETRAIN CONFIG------------------//
+	
 	public static  int 		MOTOR_DRIVE_FRONT_LEFT_PORT,
    							MOTOR_DRIVE_FRONT_RIGHT_PORT,
    							MOTOR_DRIVE_BACK_LEFT_PORT,
@@ -30,6 +32,9 @@ public class RobotMap {
 	
 	public static double DRIVE_MODIFIER = 1.0;
 	
+	
+	//---------------------BUCKET CONFIG--------------------//
+	
 	public static int MOTOR_BUCKET_OPS_PORT,
 					  MOTOR_BALL_INTAKE_PORT;
 	
@@ -39,6 +44,10 @@ public class RobotMap {
 	public static int PISTON_EJECT_MODULE_NUMBER,
 					  PISTON_EJECT_FORWARD_CHANNEL,
 					  PISTON_EJECT_REVERSE_CHANNEL;
+	
+	public static double BUCKET_FOLD_SPEED,
+					     BUCKET_UNFOLD_SPEED,
+					     BUCKET_INTAKE_SPEED;
 	
 	
     // For example to map the left and right motors, you could define the
