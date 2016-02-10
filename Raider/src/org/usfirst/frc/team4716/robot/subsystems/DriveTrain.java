@@ -5,6 +5,7 @@ import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -25,10 +26,11 @@ public class DriveTrain extends Subsystem {
    							MOTOR_DRIVE_BACK_LEFT,
    							MOTOR_DRIVE_BACK_RIGHT;
 
-	Solenoid				SOLENOID_DRIVE_FRONT_LEFT,
+	DoubleSolenoid			SOLENOID_DRIVE_FRONT_LEFT,
 							SOLENOID_DRIVE_FRONT_RIGHT,
 							SOLENOID_DRIVE_BACK_LEFT,
-							SOLENOID_DRIVE_BACK_RIGHT;
+							SOLENOID_DRIVE_BACK_RIGHT,
+							SOLENOID;
 
 	AnalogGyro 				gyro;
 
@@ -49,19 +51,20 @@ public class DriveTrain extends Subsystem {
 		MOTOR_DRIVE_BACK_RIGHT = new Victor(RobotMap.MOTOR_DRIVE_BACK_RIGHT_PORT);
 		drive = new RobotDrive(MOTOR_DRIVE_FRONT_LEFT, MOTOR_DRIVE_FRONT_RIGHT, MOTOR_DRIVE_BACK_LEFT, MOTOR_DRIVE_BACK_RIGHT);
 		
-		SOLENOID_DRIVE_FRONT_LEFT = new Solenoid(RobotMap.SOLENOID_DRIVE_FRONT_LEFT_PORT);
-		SOLENOID_DRIVE_FRONT_RIGHT = new Solenoid(RobotMap.SOLENOID_DRIVE_FRONT_RIGHT_PORT);
-		SOLENOID_DRIVE_BACK_LEFT = new Solenoid(RobotMap.SOLENOID_DRIVE_BACK_LEFT_PORT);
-		SOLENOID_DRIVE_BACK_RIGHT = new Solenoid(RobotMap.SOLENOID_DRIVE_BACK_RIGHT_PORT);
+		SOLENOID_DRIVE_FRONT_LEFT = new DoubleSolenoid(1,0,RobotMap.SOLENOID_DRIVE_FRONT_LEFT_PORT_B);
+		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(1,2,RobotMap.SOLENOID_DRIVE_FRONT_RIGHT_PORT_B);
+		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(1,4,RobotMap.SOLENOID_DRIVE_BACK_LEFT_PORT_B);
+		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(1,6,RobotMap.SOLENOID_DRIVE_BACK_RIGHT_PORT_B);
+		SOLENOID = new DoubleSolenoid(1, RobotMap.SOLENOID_A, RobotMap.SOLENOID_B);
 		
-		/*Encoder Initialzation*/
-		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
-		encoderDriveRight = new Encoder(RobotMap.ENCODER_DRIVE_RIGHT_PORT_A, RobotMap.ENCODER_DRIVE_RIGHT_PORT_B);
-		
-
-		/*Gyro Initialzation*/
-		gyro = new AnalogGyro(RobotMap.GYRO_MAIN_PORT);
-		gyro.setSensitivity(RobotMap.GYRO_SENSITIVITY);
+//		/*Encoder Initialzation*/
+//		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
+//		encoderDriveRight = new Encoder(RobotMap.ENCODER_DRIVE_RIGHT_PORT_A, RobotMap.ENCODER_DRIVE_RIGHT_PORT_B);
+//		
+//
+//		/*Gyro Initialzation*/
+//		gyro = new AnalogGyro(RobotMap.GYRO_MAIN_PORT);
+//		gyro.setSensitivity(RobotMap.GYRO_SENSITIVITY);
 
 		/*LiveWindow Initialzation*/
 		LiveWindow.addActuator("DriveTrain", "Front Left CIM", (Victor) MOTOR_DRIVE_FRONT_LEFT);
@@ -69,10 +72,10 @@ public class DriveTrain extends Subsystem {
 		LiveWindow.addActuator("DriveTrain", "Back Left CIM", (Victor) MOTOR_DRIVE_BACK_LEFT);
 		LiveWindow.addActuator("DriveTrain", "Back Right CIM", (Victor) MOTOR_DRIVE_BACK_RIGHT);
 		
-		LiveWindow.addActuator("DriveTrain", "Front Left Piston", (Solenoid) SOLENOID_DRIVE_FRONT_LEFT);
-		LiveWindow.addActuator("DriveTrain", "Front Right Piston", (Solenoid) SOLENOID_DRIVE_FRONT_RIGHT);
-		LiveWindow.addActuator("DriveTrain", "Back Left Piston", (Solenoid) SOLENOID_DRIVE_BACK_LEFT);
-		LiveWindow.addActuator("DriveTrain", "Back Right Piston", (Solenoid) SOLENOID_DRIVE_BACK_RIGHT);
+		LiveWindow.addActuator("DriveTrain", "Front Left Piston", (DoubleSolenoid) SOLENOID_DRIVE_FRONT_LEFT);
+		LiveWindow.addActuator("DriveTrain", "Front Right Piston", (DoubleSolenoid) SOLENOID_DRIVE_FRONT_RIGHT);
+		LiveWindow.addActuator("DriveTrain", "Back Left Piston", (DoubleSolenoid) SOLENOID_DRIVE_BACK_LEFT);
+		LiveWindow.addActuator("DriveTrain", "Back Right Piston", (DoubleSolenoid) SOLENOID_DRIVE_BACK_RIGHT);
 	}
 
     public void initDefaultCommand() {
@@ -99,35 +102,57 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(double speed, double turn){
-    	drive.arcadeDrive(speed * RobotMap.DRIVE_MODIFIER,turn * RobotMap.DRIVE_MODIFIER);
+    	drive.arcadeDrive(speed, turn);
     }
     
     public void setUpPosition(){
-    	SOLENOID_DRIVE_FRONT_LEFT.set(true);
-		SOLENOID_DRIVE_FRONT_RIGHT.set(true);
-		SOLENOID_DRIVE_BACK_LEFT.set(true);
-		SOLENOID_DRIVE_BACK_RIGHT.set(true);
+    	SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kForward);
     }
     
     public void setDownPosition(){
-    	SOLENOID_DRIVE_FRONT_LEFT.set(false);
-		SOLENOID_DRIVE_FRONT_RIGHT.set(false);
-		SOLENOID_DRIVE_BACK_LEFT.set(false);
-		SOLENOID_DRIVE_BACK_RIGHT.set(false);
+    	SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kReverse);
     }
     
     public void setFrontUpPoisiton(){
-    	SOLENOID_DRIVE_FRONT_LEFT.set(true);
-		SOLENOID_DRIVE_FRONT_RIGHT.set(true);
-		SOLENOID_DRIVE_BACK_LEFT.set(false);
-		SOLENOID_DRIVE_BACK_RIGHT.set(false);
+    	SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kReverse);
     }
     
     public void setBackUpPosition(){
-    	SOLENOID_DRIVE_FRONT_LEFT.set(false);
-		SOLENOID_DRIVE_FRONT_RIGHT.set(false);
-		SOLENOID_DRIVE_BACK_LEFT.set(true);
-		SOLENOID_DRIVE_BACK_RIGHT.set(true);
+    	SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void setRightUpPosition(){
+    	SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    public void setLeftUpPosition(){
+    	SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kForward);
+		SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kReverse);
+		SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void setFrontThing(){
+    	SOLENOID.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void setFrontThingBack(){
+    	SOLENOID.set(DoubleSolenoid.Value.kReverse);
     }
     
     public void setObjectState(boolean set){
