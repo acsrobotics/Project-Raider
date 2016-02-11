@@ -15,7 +15,16 @@ public class ClimbTower extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.climbTower();
+    	if (Robot.climber.getAngleEncoderDistance() < 100) {
+    		Robot.climber.changeArmAngle(.7);;
+    	} else {
+    		Robot.climber.changeArmAngle(0);
+    	}
+    	if (Robot.climber.getExtensionEncoderDistance() < 100) {
+    		Robot.climber.extendArm(.75);
+    	} else {
+    		Robot.climber.extendArm(0);
+    	}
     	System.out.println("Climbing tower");
     }
 

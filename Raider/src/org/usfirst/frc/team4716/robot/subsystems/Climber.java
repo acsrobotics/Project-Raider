@@ -52,19 +52,6 @@ public class Climber extends Subsystem {
     	ANGLE_MOTOR.set(angleSpeed);
     }
     
-    public void climbTower() {
-    	if (angleEncoder.get() < 100) {
-    		ANGLE_MOTOR.set(.7);
-    	} else {
-    		ANGLE_MOTOR.set(0);
-    	}
-    	
-    	if (extensionEncoder.get() < 100) {
-    		EXTENSION_MOTOR.set(.75);
-    	} else {
-    		EXTENSION_MOTOR.set(0);
-    	}
-    }
     
     public double getExtensionEncoderDistance() {
     	return extensionEncoder.getDistance();
