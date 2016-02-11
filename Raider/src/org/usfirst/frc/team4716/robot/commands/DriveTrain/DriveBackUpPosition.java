@@ -1,7 +1,10 @@
 package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
+import java.nio.file.attribute.PosixFilePermission;
+
 import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.RobotMap;
+import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -18,11 +21,7 @@ public class DriveBackUpPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(RobotMap.IS_UP == true){
-        Robot.drivetrain.setBackUpPosition();
-        }else if(RobotMap.IS_UP == false){
-        	Robot.drivetrain.setDownPosition();
-        }
+    	Robot.drivetrain.setPosition(PositionStatusCode.FRONT_DOWN_BACK_UP);
     }
 
     // Called repeatedly when this Command is scheduled to run

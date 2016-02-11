@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Bucket extends Subsystem {
-//    
+    
 //	public enum Direction {
 //		UP, DOWN
 //	}
@@ -29,7 +29,7 @@ public class Bucket extends Subsystem {
 //
 //	Thread BACKGROUND_JOB;
 //	
-//	public Bucket(){
+	public Bucket(){
 //
 //		MOTOR_BUCKET_OPS = new Talon(RobotMap.MOTOR_BUCKET_OPS_PORT);
 //		MOTOR_BALL_INTAKE = new Talon(RobotMap.MOTOR_BALL_INTAKE_PORT);
@@ -45,15 +45,15 @@ public class Bucket extends Subsystem {
 //		
 //		BACKGROUND_JOB = new Thread(new BucketBackgroundTask(this.MOTOR_BALL_INTAKE));
 //		BACKGROUND_JOB.start();
-//	}
-//	
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-//    
-//    //-----------Bucket methods-------------//
-//    
+    
+    //-----------Bucket methods-------------//
+    
 //    public void moveBucket(Direction dir){
 //    	if(dir.equals(Direction.UP)){
 //    		MOTOR_BUCKET_OPS.set(RobotMap.BUCKET_FOLD_SPEED);
@@ -125,6 +125,6 @@ public class Bucket extends Subsystem {
 //    	}
 //    	
 //    }
-    
+//    
 }
 
