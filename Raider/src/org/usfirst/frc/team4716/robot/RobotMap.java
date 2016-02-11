@@ -1,9 +1,6 @@
 package org.usfirst.frc.team4716.robot;
 
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -12,34 +9,34 @@ public class RobotMap {
 	
 	
 	//---------------DRIVETRAIN CONFIG------------------//
-	
-	public static  int 		MOTOR_DRIVE_FRONT_LEFT_PORT = 0,
-   							MOTOR_DRIVE_FRONT_RIGHT_PORT = 1,
-   							MOTOR_DRIVE_BACK_LEFT_PORT = 6,
-   							MOTOR_DRIVE_BACK_RIGHT_PORT = 7;
-	
-	public static int	    SOLENOID_DRIVE_FRONT_LEFT_PORT_A = 0,
-							SOLENOID_DRIVE_FRONT_LEFT_PORT_B = 1,
-							SOLENOID_DRIVE_FRONT_RIGHT_PORT_A = 2,
-							SOLENOID_DRIVE_FRONT_RIGHT_PORT_B = 3,
-							SOLENOID_DRIVE_BACK_LEFT_PORT_A = 4,
-							SOLENOID_DRIVE_BACK_LEFT_PORT_B = 5,
-							SOLENOID_DRIVE_BACK_RIGHT_PORT_A = 6,
-							SOLENOID_DRIVE_BACK_RIGHT_PORT_B = 7,
-							SOLENOID_A = 8,
-							SOLENOID_B = 9;
-	public static boolean   IS_UP;
-
+//	
+//	public static  int 		MOTOR_DRIVE_FRONT_LEFT_PORT = 0,
+//   							MOTOR_DRIVE_FRONT_RIGHT_PORT = 1,
+//   							MOTOR_DRIVE_BACK_LEFT_PORT = 6,
+//   							MOTOR_DRIVE_BACK_RIGHT_PORT = 7;
+//	
+//	public static int	    SOLENOID_DRIVE_FRONT_LEFT_PORT_A = 0,
+//							SOLENOID_DRIVE_FRONT_LEFT_PORT_B = 1,
+//							SOLENOID_DRIVE_FRONT_RIGHT_PORT_A = 2,
+//							SOLENOID_DRIVE_FRONT_RIGHT_PORT_B = 3,
+//							SOLENOID_DRIVE_BACK_LEFT_PORT_A = 4,
+//							SOLENOID_DRIVE_BACK_LEFT_PORT_B = 5,
+//							SOLENOID_DRIVE_BACK_RIGHT_PORT_A = 6,
+//							SOLENOID_DRIVE_BACK_RIGHT_PORT_B = 7,
+//							SOLENOID_A = 8,
+//							SOLENOID_B = 9;
+//	public static boolean   IS_UP;
+//
 //	public static int       GYRO_MAIN_PORT = 0;					//CHANGE PORTS, THEY ARE INCORRECT
 //	public static double    GYRO_SENSITIVITY = 0.007;
 //
 //	public static int       ENCODER_DRIVE_LEFT_PORT_A = 0,
-//							ENCODER_DRIVE_LEFT_PORT_B = 0,
-//							ENCODER_DRIVE_RIGHT_PORT_A = 0,
-//							ENCODER_DRIVE_RIGHT_PORT_B = 0;
+//							ENCODER_DRIVE_LEFT_PORT_B = 1,
+//							ENCODER_DRIVE_RIGHT_PORT_A = 2,
+//							ENCODER_DRIVE_RIGHT_PORT_B = 3;
 //
-//	public static int       ULTRASONIC_LEFT_PORT = 0,
-//							ULTRASONIC_RIGHT_PORT = 0;
+//	public static int       ULTRASONIC_LEFT_PORT = 4,
+//							ULTRASONIC_RIGHT_PORT = 5;
 //	
 //	public static double DRIVE_MODIFIER = 1.0;
 //	
