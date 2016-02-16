@@ -65,6 +65,8 @@ public class DriveTrain extends Subsystem {
 		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
 		SOLENOID = new DoubleSolenoid(1, 0, 1);
 		
+		ultrasonicLeft = new Ultrasonic(0,1);
+		
 //		/*Encoder Initialzation*/
 //		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
 //		encoderDriveRight = new Encoder(RobotMap.ENCODER_DRIVE_RIGHT_PORT_A, RobotMap.ENCODER_DRIVE_RIGHT_PORT_B);
@@ -181,6 +183,10 @@ public class DriveTrain extends Subsystem {
     
     public double getGyro(){
     	return gyro.getAngle();
+    }
+    
+    public double getUltrasonicLeft(){
+    	return ultrasonicLeft.getRangeInches();
     }
     
     

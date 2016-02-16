@@ -14,35 +14,35 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Bucket extends Subsystem {
     
-//	public enum Direction {
-//		UP, DOWN
-//	}
-//	
-//	SpeedController MOTOR_BUCKET_OPS,
-//					MOTOR_BALL_INTAKE;
-//	
-//	DigitalInput LIMIT_UP,
-//				 LIMIT_DOWN;
-//	
-//	DoubleSolenoid PISTON_EJECT;
-//	boolean isPoked;
-//
-//	Thread BACKGROUND_JOB;
+	public enum Direction {
+		UP, DOWN
+	}
+	
+	SpeedController MOTOR_BUCKET_OPS,
+					MOTOR_BALL_INTAKE;
+	
+	DigitalInput LIMIT_UP,
+				 LIMIT_DOWN;
+	
+	DoubleSolenoid PISTON_EJECT;
+	boolean isPoked;
+
+	Thread BACKGROUND_JOB;
 //	
 	public Bucket(){
 //
-//		MOTOR_BUCKET_OPS = new Talon(RobotMap.MOTOR_BUCKET_OPS_PORT);
-//		MOTOR_BALL_INTAKE = new Talon(RobotMap.MOTOR_BALL_INTAKE_PORT);
-//		
-//		LIMIT_UP = new DigitalInput(RobotMap.SWTICH_UP_PORT);
-//		LIMIT_DOWN = new DigitalInput(RobotMap.SWITCH_DOWN_PORT);
-//		
-//		PISTON_EJECT = new DoubleSolenoid(RobotMap.PISTON_EJECT_MODULE_NUMBER
-//										, RobotMap.PISTON_EJECT_FORWARD_CHANNEL
-//										, RobotMap.PISTON_EJECT_REVERSE_CHANNEL);
-//		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
-//		isPoked = false;
-//		
+		MOTOR_BUCKET_OPS = new Talon(2);
+		MOTOR_BALL_INTAKE = new Talon(3);
+		
+		LIMIT_UP = new DigitalInput(0);
+		LIMIT_DOWN = new DigitalInput(1);
+		
+		PISTON_EJECT = new DoubleSolenoid(1
+										, 0
+										, 1);
+		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+		isPoked = false;
+		
 //		BACKGROUND_JOB = new Thread(new BucketBackgroundTask(this.MOTOR_BALL_INTAKE));
 //		BACKGROUND_JOB.start();
 	}
