@@ -25,15 +25,17 @@ gradle-app.setting
 # Eclipse
 *.pydevproject
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.settings/
-.loadpath
+//For now, since the two repos are improperly jammed into one, use regex matching to get rid of the excess Eclipse folders in the repo. Once the repos have been seperated, remove the "*" regex matcher.
+*.settings/
+*.loadpath
+*target/
+*bin/
 
 # Eclipse Core
 .project
