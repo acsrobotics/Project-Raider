@@ -2,28 +2,14 @@ package org.usfirst.frc.team4716.robot;
 
 import java.io.FileReader;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 public class RobotMap {
 	
-	JSONParser parser = new JSONParser();
-	static Object obj;
-	static JSONObject jsonObject = (JSONObject)obj;
-				
 	
-	RobotMap(){
-		try {
-			obj = parser.parse(new FileReader("meme.json"));
-		} catch (Exception e){
-			System.out.println("parsing error");
-		}
-	}
 
-	public static  int 		MOTOR_DRIVE_FRONT_LEFT_PORT = (Integer) jsonObject.get("mFLDrive"),
-   							MOTOR_DRIVE_FRONT_RIGHT_PORT = (Integer) jsonObject.get("mFRDrive"),
-   							MOTOR_DRIVE_BACK_LEFT_PORT = (Integer) jsonObject.get("mBLDrive"),
-   							MOTOR_DRIVE_BACK_RIGHT_PORT = (Integer) jsonObject.get("mBRDrive");
+	public static  int 		MOTOR_DRIVE_FRONT_LEFT_PORT = 0,
+   							MOTOR_DRIVE_FRONT_RIGHT_PORT = 1,
+   							MOTOR_DRIVE_BACK_LEFT_PORT = 2,
+   							MOTOR_DRIVE_BACK_RIGHT_PORT = 3;
 	
 	public static final int	SOLENOID_DRIVE_FRONT_LEFT_PORT = 0,
 							SOLENOID_DRIVE_FRONT_RIGHT_PORT = 1,
