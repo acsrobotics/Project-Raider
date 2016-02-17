@@ -1,12 +1,8 @@
 
 package org.usfirst.frc.team4716.robot;
 
-import java.io.FileReader;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
-import org.usfirst.frc.team4716.robot.subsystems.Bucket;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -25,8 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static DriveTrain drivetrain;
-	public static Bucket bucket;
+	public static final DriveTrain drivetrain = new DriveTrain();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -38,11 +33,11 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		bucket = new Bucket();
-		drivetrain = new DriveTrain();
         chooser = new SendableChooser();
         chooser.addDefault("Nothing", new DoNothing());
+        chooser.addObject("Drive Forward Time", new DriveForwardTime(1.0,5.0));
 //        chooser.addObject("Low Goal", object);
+        
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -106,6 +101,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        System.out.println(Robot.drivetrain.getUltrasonicLeft());
     }
     
     /**
@@ -115,4 +111,5 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     
+
 }

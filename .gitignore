@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Java
 *.class
 
@@ -24,6 +25,9 @@ gradle-app.setting
 
 # Eclipse
 *.pydevproject
+=======
+
+>>>>>>> origin/testing
 .metadata
 bin/
 tmp/
@@ -44,7 +48,14 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 
+<<<<<<< HEAD
 # CDT-specific
+=======
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+>>>>>>> origin/testing
 .cproject
 
 # JDT-specific (Eclipse Java Development Tools)
@@ -53,11 +64,29 @@ local.properties
 # Java annotation processor (APT)
 .factorypath
 
+<<<<<<< HEAD
 # PDT-specific
+=======
+# PDT-specific (PHP Development Tools)
+>>>>>>> origin/testing
 .buildpath
 
 # sbteclipse plugin
 .target
 
+<<<<<<< HEAD
 # TeXlipse plugin
 .texlipse
+=======
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+>>>>>>> origin/testing
