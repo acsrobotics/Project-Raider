@@ -309,6 +309,12 @@ public abstract class OI {
 		isInitialized = true;
 	}
 	
+	/**This method checks the stability and reliability of the controllerMap. It is invoked whenever a method involving
+	 * variable reads, modifications or deletions from this class is invoked.
+	 * 
+	 * @throws InitializationError - Thrown when the stabilityChecker has detected that either the class is unitialized, or not properly constructed.
+	 * @throws CorruptMapException - Thrown when the stabilityChecker has concluded that the map is corrupt due to misplaces / misconfigured values.
+	 */
 	protected void stabilityChecker() throws InitializationError, CorruptMapException {
 		/**The StackTraceElement[] containing the stack trace for the current thread.
 		 * Used for error detection during initialization or OI method invocation.
@@ -381,23 +387,25 @@ public abstract class OI {
 		}
 	}
 	
-	/**
+	/**The getter method for the {@link OI#isInitialized} Boolean.
 	 * 
-	 * @return
+	 * @return - The boolean value that the {@link OI#isInitialized} variable currently holds.
+	 * @see {@linkplain Boolean}, {@linkplain OI#isInitialized}
 	 */
 	public Boolean isInitialized() {
 		return isInitialized;
 	}
 	
-	/**
+	/**The static getter method for the {@link OI#isInitialized} Boolean.
 	 * 
-	 * @param oi
-	 * @return
+	 * @return - The boolean value that the {@link OI#isInitialized} variable holds for a given instance of {@linkplain OI}.
+	 * @see {@linkplain Boolean}, {@linkplain OI#isInitialized()}, {@linkplain OI#isInitialized}
 	 */
 	public static Boolean isInitialized(OI oi) {
 		return oi.isInitialized();
 	}
-	/**
+	
+	/**Returns the Double representing the value of a 
 	 * 
 	 * @param j
 	 * @param a
@@ -622,7 +630,12 @@ public abstract class OI {
 			{
 				getAllJoystickInfo().forEach((HashMap<Joystick, JoystickAuthority> joyMap, ArrayList<JoystickButton> buttonList) -> {
 					joyMap.forEach((Joystick joy, JoystickAuthority joyAuth) -> {
-						
+						/**So the buttonList and joyAuth variables in this case are redundant as there is already a method implemented for returning the value
+						 * of the ArrayList of JoystickButtons mapped to a Joystick... However, for stack efficiency, in the future, this method should be
+						 * redone to only use the available variables within this scope to retrieve the joystick buttons. 
+						 * 
+						 */
+						put(joy, getJoystickButtons(joy));
 					});
 				});
 			}
