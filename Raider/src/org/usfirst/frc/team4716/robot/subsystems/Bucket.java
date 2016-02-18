@@ -18,6 +18,8 @@ public class Bucket extends Subsystem {
 		UP, DOWN, IN, OUT
 	}
 	
+	
+	
 	SpeedController MOTOR_BUCKET_OPS,
 					MOTOR_BALL_INTAKE;
 	
@@ -42,6 +44,7 @@ public class Bucket extends Subsystem {
 		PISTON_EJECT = new DoubleSolenoid(RobotMap.PISTON_EJECT_MODULE_NUMBER
 										, RobotMap.PISTON_EJECT_FORWARD_CHANNEL
 										, RobotMap.PISTON_EJECT_REVERSE_CHANNEL);
+		
 		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
 		isPoked = false;
 		

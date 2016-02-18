@@ -1,16 +1,11 @@
 package org.usfirst.frc.team4716.robot;
 
-
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
-
 public class RobotMap {
 	
 	
 	//---------------DRIVETRAIN CONFIG------------------//
 	
-	public static  int 		MOTOR_DRIVE_FRONT_LEFT_PORT = 0,
+	public static int 		MOTOR_DRIVE_FRONT_LEFT_PORT = 0,
    							MOTOR_DRIVE_FRONT_RIGHT_PORT = 1,
    							MOTOR_DRIVE_BACK_LEFT_PORT = 6,
    							MOTOR_DRIVE_BACK_RIGHT_PORT = 7;
@@ -43,27 +38,27 @@ public class RobotMap {
 	
 	//---------------------BUCKET CONFIG--------------------//
 	
-	public static int MOTOR_BUCKET_OPS_PORT,
-					  MOTOR_BALL_INTAKE_PORT;
+	public static int MOTOR_BUCKET_OPS_PORT = 2,
+					  MOTOR_BALL_INTAKE_PORT = 3;
 	
-	public static int SWTICH_UP_PORT,
-					  SWITCH_DOWN_PORT;
+	public static int SWTICH_UP_PORT = 0,
+					  SWITCH_DOWN_PORT = 1;
 	
-	public static int PISTON_EJECT_MODULE_NUMBER,
-					  PISTON_EJECT_FORWARD_CHANNEL,
-					  PISTON_EJECT_REVERSE_CHANNEL;
+	public static int PISTON_EJECT_MODULE_NUMBER = 1,
+					  PISTON_EJECT_FORWARD_CHANNEL = 0,
+					  PISTON_EJECT_REVERSE_CHANNEL = 1;
 	
-	public static int PISTON_ELEVATOR_MODULE_NUMBER,
-					  PISTON_ELEVATOR_FORWARD_CHANNEL,
-					  PISTON_ELEVATOR_REVERSE_CHANNEL;
+	public static int PISTON_ELEVATOR_MODULE_NUMBER = 1,
+					  PISTON_ELEVATOR_FORWARD_CHANNEL = 2,
+					  PISTON_ELEVATOR_REVERSE_CHANNEL = 3;
 	
-	public static int MOTOR_INTAKE_SPEED;
+	public static double MOTOR_INTAKE_SPEED = 0.7;
 	
-	public static double BUCKET_FOLD_SPEED,
-					     BUCKET_UNFOLD_SPEED,
-					     BUCKET_INTAKE_SPEED;
+	public static double BUCKET_FOLD_SPEED = 0.7,
+					     BUCKET_UNFOLD_SPEED = 0.7,
+					     BUCKET_INTAKE_SPEED = 0.7;
 	
-	//---------------------BUCKET CONFIG--------------------//
+	//---------------------CLIMBER CONFIG--------------------//
 	
 	public static int MOTOR_ANGLE,
 					  MOTOR_CLIMBER;
