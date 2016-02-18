@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
-	Joystick driveStick = new Joystick(0);
+	Joystick driveStick = new Joystick(0); // Logitech Dual Action
 	Joystick operatorStick = new Joystick(1);
 	Joystick testStick = new Joystick(5);
 	
@@ -47,11 +47,21 @@ public class OI {
 	}
 
 	public double getJoyX() {
-		return driveStick.getX();
+		if (driveStick.getRawAxis(2) <= 0.1 && driveStick.getRawAxis(2) >= -0.1) {
+			return 0;
+		}
+		else {
+			return driveStick.getRawAxis(2);
+		}
 	}
 
 	public double getJoyY() {
-		return driveStick.getY();
+		if (driveStick.getY() <= 0.1 && driveStick.getY() >= -0.1) {
+			return 0;
+		}
+		else {
+			return driveStick.getY();
+		}
 	}
 
 }
