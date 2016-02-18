@@ -26,13 +26,10 @@ public class DriveTrain extends Subsystem {
 		LEFT_UP_RIIGHT_DOWN,
 		FRONT_UP_BACK_DOWN,
 		FRONT_DOWN_BACK_UP,
-<<<<<<< HEAD
-=======
 		FRONT_LEFT_UP_REST_DOWN,
 		FRONT_RIGHT_UP_REST_DOWN,
 		BACK_LEFT_UP_REST_DOWN,
 		BACK_RIGHT_UP_REST_DOWN,
->>>>>>> origin/bucket
 		FUBAR // Fucked-Up-Beyond-Recognition
 	}
     
@@ -71,11 +68,7 @@ public class DriveTrain extends Subsystem {
 		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(0,4,5);
 		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
 		SOLENOID = new DoubleSolenoid(1, 0, 1);
-<<<<<<< HEAD
-		
 		ultrasonicLeft = new Ultrasonic(0,1);
-=======
->>>>>>> origin/bucket
 		
 //		/*Encoder Initialzation*/
 //		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
@@ -130,15 +123,9 @@ public class DriveTrain extends Subsystem {
     public void setPosition(PositionStatusCode code){
     	if((code.equals(PositionStatusCode.ALL_UP) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_UP))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
-<<<<<<< HEAD
     							, DoubleSolenoid.Value.kForward
     							, DoubleSolenoid.Value.kForward
     							, DoubleSolenoid.Value.kForward);
-=======
-    				, DoubleSolenoid.Value.kForward
-    				, DoubleSolenoid.Value.kForward
-    				, DoubleSolenoid.Value.kForward);
->>>>>>> origin/bucket
     	}else if((code.equals(PositionStatusCode.ALL_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_DOWN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
@@ -164,8 +151,6 @@ public class DriveTrain extends Subsystem {
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse);
-<<<<<<< HEAD
-=======
     	}else if((code.equals(PositionStatusCode.FRONT_LEFT_UP_REST_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_LEFT_UP_REST_DOWN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
@@ -186,7 +171,6 @@ public class DriveTrain extends Subsystem {
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward);
->>>>>>> origin/bucket
     	}
     }
     
@@ -298,8 +282,6 @@ public class DriveTrain extends Subsystem {
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
     		return PositionStatusCode.FRONT_DOWN_BACK_UP;
-<<<<<<< HEAD
-=======
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
         	&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
         	&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
@@ -320,7 +302,6 @@ public class DriveTrain extends Subsystem {
             && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
             return PositionStatusCode.BACK_RIGHT_UP_REST_DOWN;
->>>>>>> origin/bucket
     	}else {
     		return PositionStatusCode.FUBAR;
     	}
