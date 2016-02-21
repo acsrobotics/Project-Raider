@@ -6,6 +6,7 @@ import java.io.FileReader;
 import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 
 	public static final DriveTrain drivetrain = new DriveTrain();
 	public static final Bucket     bucket     = new Bucket();
+	public static final Climber    climber    = new Climber();
 	public static OI oi;
 
     Command autonomousCommand;

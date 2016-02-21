@@ -65,16 +65,18 @@ public class RobotMap {
 	
 	//---------------------CLIMBER CONFIG--------------------//
 	
-	public static int MOTOR_ANGLE,
-					  MOTOR_CLIMBER;
+	public static int MOTOR_ANGLE_PORT = 4,
+					  MOTOR_EXTENSION_PORT = 5;
 	
-	public static int LIMIT_SWITCH_STANDARD,
-					  LIMIT_SWITCH;
+	public static int LIMIT_SWITCH_EXTENSION= 2,
+					  LIMIT_SWITCH_LIFT = 3;
 	
-	public static int ENCODER_MOTOR_ANGLE_A,
-					  ENCODER_MOTOR_ANGLE_B,
-					  ENCODER_MOTOR_CLIMBER_A,
-					  ENCODER_MOTOR_CLIMBER_B;
+	public static int ENCODER_MOTOR_ANGLE_A = 4,
+					  ENCODER_MOTOR_ANGLE_B = 5,
+					  ENCODER_MOTOR_EXTENSION_A = 6,
+					  ENCODER_MOTOR_EXTENSION_B = 7;
+	
+	
 	
 	
     // For example to map the left and right motors, you could define the
