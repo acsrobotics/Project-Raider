@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class EnergizedIntakeMotor extends Command {
+public class EnergizeIntakeMotor extends Command {
 	
 	Direction direction;
 	
-    public EnergizedIntakeMotor(Direction direction) {
+    public EnergizeIntakeMotor(Direction direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.bucket);

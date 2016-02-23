@@ -3,6 +3,8 @@ package org.usfirst.frc.team4716.robot;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.usfirst.frc.team4716.robot.commands.Auto.BucketIntake;
+import org.usfirst.frc.team4716.robot.commands.Auto.BucketIntakeFinished;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveBackUpPosition;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveDownPosition;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
@@ -44,6 +46,9 @@ public class OI {
 		driveButtons.get(6).whenPressed(new DriveLeftUp());
 		driveButtons.get(7).whenPressed(new DrivePunch());
 		driveButtons.get(0).whenPressed(new DriveForwardTime(1.0, 5.0));
+		
+		operatorButtons.get(1).whileHeld(new BucketIntake());
+		operatorButtons.get(1).whenReleased(new BucketIntakeFinished());
 	}
 
 	public double getJoyX() {
