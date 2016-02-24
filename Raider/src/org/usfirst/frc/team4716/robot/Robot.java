@@ -3,7 +3,7 @@ package org.usfirst.frc.team4716.robot;
 
 import java.io.FileReader;
 
-import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
+//import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-        chooser.addDefault("Nothing", new DoNothing());
+        //chooser.addDefault("Nothing", new DoNothing());
 //        chooser.addObject("Low Goal", object);
         
         SmartDashboard.putData("Auto mode", chooser);

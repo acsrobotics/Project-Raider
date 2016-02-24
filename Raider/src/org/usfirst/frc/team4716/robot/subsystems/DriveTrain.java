@@ -19,17 +19,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrain extends Subsystem {
 	
+	// position of the solenoid
 	public enum PositionStatusCode {
-		ALL_DOWN,
-		ALL_UP,
-		LEFT_DOWN_RIGHT_UP,
-		LEFT_UP_RIIGHT_DOWN,
-		FRONT_UP_BACK_DOWN,
-		FRONT_DOWN_BACK_UP,
-		FRONT_LEFT_UP_REST_DOWN,
-		FRONT_RIGHT_UP_REST_DOWN,
-		BACK_LEFT_UP_REST_DOWN,
-		BACK_RIGHT_UP_REST_DOWN,
+		ALL_IN,
+		ALL_OUT,
+		LEFT_IN_RIGHT_OUT,
+		LEFT_OUT_RIIGHT_IN,
+		FRONT_OUT_BACK_IN,
+		FRONT_IN_BACK_OUT,
+		FRONT_LEFT_OUT_REST_IN,
+		FRONT_RIGHT_OUT_REST_IN,
+		BACK_LEFT_OUT_REST_IN,
+		BACK_RIGHT_OUT_REST_IN,
 		FUBAR // Fucked-Up-Beyond-Recognition
 	}
     
@@ -69,6 +70,8 @@ public class DriveTrain extends Subsystem {
 		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
 		SOLENOID = new DoubleSolenoid(1, 0, 1);
 		ultrasonicLeft = new Ultrasonic(0,1);
+		
+		this.setPosition(PositionStatusCode.ALL_IN);
 		
 //		/*Encoder Initialzation*/
 //		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
@@ -121,52 +124,52 @@ public class DriveTrain extends Subsystem {
 
     
     public void setPosition(PositionStatusCode code){
-    	if((code.equals(PositionStatusCode.ALL_UP) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_UP))){
+    	if((code.equals(PositionStatusCode.ALL_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_OUT))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
     							, DoubleSolenoid.Value.kForward
     							, DoubleSolenoid.Value.kForward
     							, DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.ALL_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_DOWN))){
+    	}else if((code.equals(PositionStatusCode.ALL_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_UP_BACK_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_UP_BACK_DOWN))){
+    	}else if((code.equals(PositionStatusCode.FRONT_OUT_BACK_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_OUT_BACK_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_DOWN_BACK_UP) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_DOWN_BACK_UP))){
+    	}else if((code.equals(PositionStatusCode.FRONT_IN_BACK_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_IN_BACK_OUT))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.LEFT_DOWN_RIGHT_UP) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_DOWN_RIGHT_UP))){
+    	}else if((code.equals(PositionStatusCode.LEFT_IN_RIGHT_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_IN_RIGHT_OUT))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.LEFT_UP_RIIGHT_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_UP_RIIGHT_DOWN))){
+    	}else if((code.equals(PositionStatusCode.LEFT_OUT_RIIGHT_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_OUT_RIIGHT_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_LEFT_UP_REST_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_LEFT_UP_REST_DOWN))){
+    	}else if((code.equals(PositionStatusCode.FRONT_LEFT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_LEFT_OUT_REST_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_RIGHT_UP_REST_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_RIGHT_UP_REST_DOWN))){
+    	}else if((code.equals(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.BACK_LEFT_UP_REST_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.BACK_LEFT_UP_REST_DOWN))){
+    	}else if((code.equals(PositionStatusCode.BACK_LEFT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.BACK_LEFT_OUT_REST_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.BACK_RIGHT_UP_REST_DOWN) && !this.getPositionStatusCode().equals(PositionStatusCode.BACK_RIGHT_UP_REST_DOWN))){
+    	}else if((code.equals(PositionStatusCode.BACK_RIGHT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.BACK_RIGHT_OUT_REST_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kReverse
@@ -256,52 +259,52 @@ public class DriveTrain extends Subsystem {
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-    		return PositionStatusCode.ALL_UP;
+    		return PositionStatusCode.ALL_OUT;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.ALL_DOWN;
+    		return PositionStatusCode.ALL_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-    		return PositionStatusCode.LEFT_DOWN_RIGHT_UP;
+    		return PositionStatusCode.LEFT_IN_RIGHT_OUT;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.LEFT_UP_RIIGHT_DOWN;
+    		return PositionStatusCode.LEFT_OUT_RIIGHT_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-    		return PositionStatusCode.FRONT_UP_BACK_DOWN;
+    		return PositionStatusCode.FRONT_OUT_BACK_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.FRONT_DOWN_BACK_UP;
+    		return PositionStatusCode.FRONT_IN_BACK_OUT;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
         	&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
         	&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
         	&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-        	return PositionStatusCode.FRONT_LEFT_UP_REST_DOWN;
+        	return PositionStatusCode.FRONT_LEFT_OUT_REST_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-            return PositionStatusCode.FRONT_RIGHT_UP_REST_DOWN;
+            return PositionStatusCode.FRONT_RIGHT_OUT_REST_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
             && this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-            return PositionStatusCode.BACK_LEFT_UP_REST_DOWN;
+            return PositionStatusCode.BACK_LEFT_OUT_REST_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
             && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
             && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-            return PositionStatusCode.BACK_RIGHT_UP_REST_DOWN;
+            return PositionStatusCode.BACK_RIGHT_OUT_REST_IN;
     	}else {
     		return PositionStatusCode.FUBAR;
     	}

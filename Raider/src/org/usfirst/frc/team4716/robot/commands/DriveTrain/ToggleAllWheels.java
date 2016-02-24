@@ -1,22 +1,28 @@
-package org.usfirst.frc.team4716.robot.commands.Bucket;
+package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
 import org.usfirst.frc.team4716.robot.Robot;
+import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Standby extends Command {
+public class ToggleAllWheels extends Command {
 
-    public Standby() {
+    public ToggleAllWheels() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.bucket);
+    	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(Robot.drivetrain.getPositionStatusCode().equals(PositionStatusCode.ALL_IN)){
+    		Robot.drivetrain.setPosition(PositionStatusCode.ALL_OUT);
+    	}else{
+    		Robot.drivetrain.setPosition(PositionStatusCode.ALL_IN);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +31,7 @@ public class Standby extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

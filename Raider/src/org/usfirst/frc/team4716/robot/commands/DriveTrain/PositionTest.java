@@ -1,27 +1,26 @@
-package org.usfirst.frc.team4716.robot.commands.Bucket;
+package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
+import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class EnergizeIntakeMotor extends Command {
-	
-	Direction direction;
-	
-    public EnergizeIntakeMotor(Direction direction) {
+public class PositionTest extends Command {
+
+	PositionStatusCode state;
+    public PositionTest(PositionStatusCode state) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.bucket);
-    	this.direction = direction;
+    	requires(Robot.drivetrain);
+    	this.state = state;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.bucket.energizeIntakeMotor(this.direction);
+    	Robot.drivetrain.setPosition(this.state);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,17 +29,15 @@ public class EnergizeIntakeMotor extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.bucket.haltIntakeMotor();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.bucket.haltIntakeMotor();
     }
 }

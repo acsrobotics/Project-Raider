@@ -19,7 +19,7 @@ public class DriveFrontUpPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.setPosition(PositionStatusCode.ALL_UP);
+    	Robot.drivetrain.setPosition(PositionStatusCode.ALL_OUT);
     }
 
     // Called repeatedly when this Command is scheduled to run

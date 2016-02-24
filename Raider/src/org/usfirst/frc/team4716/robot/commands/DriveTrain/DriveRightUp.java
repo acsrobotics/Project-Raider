@@ -19,7 +19,7 @@ public class DriveRightUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.setPosition(PositionStatusCode.LEFT_DOWN_RIGHT_UP);
+    	Robot.drivetrain.setPosition(PositionStatusCode.LEFT_IN_RIGHT_OUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
