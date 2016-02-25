@@ -5,6 +5,7 @@ import java.io.FileReader;
 
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
+import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
 
@@ -97,6 +98,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	//Robot.bucket.setEjectPosition(Direction.IN);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 

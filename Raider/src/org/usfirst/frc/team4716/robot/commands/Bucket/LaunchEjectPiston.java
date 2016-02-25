@@ -1,28 +1,36 @@
-package org.usfirst.frc.team4716.robot.commands.DriveTrain;
+package org.usfirst.frc.team4716.robot.commands.Bucket;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
+import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ToggleAllWheels extends Command {
+public class LaunchEjectPiston extends Command {
 
-    public ToggleAllWheels() {
+    public LaunchEjectPiston() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drivetrain);
+    	requires(Robot.bucket);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!Robot.drivetrain.getPositionStatusCode().equals(PositionStatusCode.ALL_IN)){
-    		Robot.drivetrain.setPosition(PositionStatusCode.ALL_IN);
-    	}else{
-    		Robot.drivetrain.setPosition(PositionStatusCode.ALL_OUT);
-    	}
+//    	if(Robot.bucket.isPoked()){
+//    		System.out.println("Poker out");
+//            Robot.bucket.togglePokePosition();
+//    	}
+//    	
+//    	try {
+//			Thread.sleep(150);
+//			Robot.bucket.togglePokePosition();;
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run

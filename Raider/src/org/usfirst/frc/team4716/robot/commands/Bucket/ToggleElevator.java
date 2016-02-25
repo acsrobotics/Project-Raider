@@ -1,28 +1,23 @@
-package org.usfirst.frc.team4716.robot.commands.DriveTrain;
+package org.usfirst.frc.team4716.robot.commands.Bucket;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ToggleAllWheels extends Command {
+public class ToggleElevator extends Command {
 
-    public ToggleAllWheels() {
+    public ToggleElevator() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drivetrain);
+    	requires(Robot.bucket);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!Robot.drivetrain.getPositionStatusCode().equals(PositionStatusCode.ALL_IN)){
-    		Robot.drivetrain.setPosition(PositionStatusCode.ALL_IN);
-    	}else{
-    		Robot.drivetrain.setPosition(PositionStatusCode.ALL_OUT);
-    	}
+    	//Robot.bucket.toggleElevator();
     }
 
     // Called repeatedly when this Command is scheduled to run

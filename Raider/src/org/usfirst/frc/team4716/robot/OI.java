@@ -3,16 +3,12 @@ package org.usfirst.frc.team4716.robot;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveBackUpPosition;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveDownPosition;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveFrontUpPosition;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveLeftUp;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DrivePunch;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveRightUp;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveUpPosition;
+import org.usfirst.frc.team4716.robot.commands.Bucket.BucketMove;
+import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
+import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.PositionTest;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.ToggleAllWheels;
+import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -39,6 +35,7 @@ public class OI {
 			testButtons.add(new JoystickButton(testStick, x));
 		}
 
+		//--------------Drivetrain testing button set--------------//
 		testButtons.get(0).whenPressed(new ToggleAllWheels());
 		
 		testButtons.get(5).whenPressed(new PositionTest(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
@@ -47,12 +44,21 @@ public class OI {
 		testButtons.get(9).whenPressed(new PositionTest(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
 		
 		testButtons.get(3).whenPressed(new PositionTest(PositionStatusCode.LEFT_IN_RIGHT_OUT));
-		testButtons.get(4).whenPressed(new PositionTest(PositionStatusCode.LEFT_OUT_RIIGHT_IN));
+		testButtons.get(4).whenPressed(new PositionTest(PositionStatusCode.LEFT_OUT_RIGHT_IN));
 		
 		testButtons.get(2).whenPressed(new PositionTest(PositionStatusCode.FRONT_IN_BACK_OUT));
 		testButtons.get(1).whenPressed(new PositionTest(PositionStatusCode.FRONT_OUT_BACK_IN));
 		
+		//----------------Bucket testing button set------------------------//
+		testButtons.get(0).whenPressed(new LaunchEjectPiston());
+		testButtons.get(1).whenPressed(new ToggleElevator());
+		//testButtons.get(2).whenPressed(new SetBucketPosition(Direction.UP));
+		//testButtons.get(3).whenPressed(new SetBucketPosition(Direction.DOWN));
 		
+		testButtons.get(5).whenPressed(new BucketMove(Direction.DOWN));
+		testButtons.get(6).whenPressed(new BucketMove(Direction.UP));
+		
+		//-----------------------------------------------------------------//
 		
 		
 //		driveButtons.get(1).whenPressed(new DriveBackUpPosition());

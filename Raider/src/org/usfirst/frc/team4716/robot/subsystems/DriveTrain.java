@@ -19,12 +19,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrain extends Subsystem {
 	
-	// position of the solenoid
 	public enum PositionStatusCode {
 		ALL_IN,
 		ALL_OUT,
 		LEFT_IN_RIGHT_OUT,
-		LEFT_OUT_RIIGHT_IN,
+		LEFT_OUT_RIGHT_IN,
 		FRONT_OUT_BACK_IN,
 		FRONT_IN_BACK_OUT,
 		FRONT_LEFT_OUT_REST_IN,
@@ -42,8 +41,7 @@ public class DriveTrain extends Subsystem {
 	DoubleSolenoid			SOLENOID_DRIVE_FRONT_LEFT,
 							SOLENOID_DRIVE_FRONT_RIGHT,
 							SOLENOID_DRIVE_BACK_LEFT,
-							SOLENOID_DRIVE_BACK_RIGHT,
-							SOLENOID;
+							SOLENOID_DRIVE_BACK_RIGHT;
 
 	AnalogGyro 				gyro;
 
@@ -68,10 +66,7 @@ public class DriveTrain extends Subsystem {
 		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(0,2,3);
 		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(0,4,5);
 		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
-		SOLENOID = new DoubleSolenoid(1, 0, 1);
 		ultrasonicLeft = new Ultrasonic(0,1);
-		
-		this.setPosition(PositionStatusCode.ALL_IN);
 		
 //		/*Encoder Initialzation*/
 //		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
@@ -149,7 +144,7 @@ public class DriveTrain extends Subsystem {
 					, DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.LEFT_OUT_RIIGHT_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_OUT_RIIGHT_IN))){
+    	}else if((code.equals(PositionStatusCode.LEFT_OUT_RIGHT_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_OUT_RIGHT_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kReverse
 					, DoubleSolenoid.Value.kForward
@@ -274,7 +269,7 @@ public class DriveTrain extends Subsystem {
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
     		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.LEFT_OUT_RIIGHT_IN;
+    		return PositionStatusCode.LEFT_OUT_RIGHT_IN;
     	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
     		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward

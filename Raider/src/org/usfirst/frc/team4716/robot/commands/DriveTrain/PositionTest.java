@@ -10,17 +10,17 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PositionTest extends Command {
 
-	PositionStatusCode state;
-    public PositionTest(PositionStatusCode state) {
+	PositionStatusCode code;
+    public PositionTest(PositionStatusCode code) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
-    	this.state = state;
+    	this.code = code;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.setPosition(this.state);
+    	Robot.drivetrain.setPosition(code);
     }
 
     // Called repeatedly when this Command is scheduled to run
