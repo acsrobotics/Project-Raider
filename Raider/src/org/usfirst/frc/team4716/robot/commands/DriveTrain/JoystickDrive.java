@@ -17,11 +17,15 @@ public class JoystickDrive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.drivetrain.setSlowSpeed(0.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//System.out.println("Encoder Position: " + Robot.drivetrain.getEncoder().getPosition());
+    	Robot.drivetrain.getUltrasonicLeft();
     	Robot.drivetrain.arcadeDrive(Robot.oi.getJoyY(), Robot.oi.getJoyX());
+//    	System.out.println("From Lift: " + Robot.climber.getExtensionMotor().getPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()

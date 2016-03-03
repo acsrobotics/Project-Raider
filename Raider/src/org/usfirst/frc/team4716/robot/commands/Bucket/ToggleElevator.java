@@ -17,7 +17,7 @@ public class ToggleElevator extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.bucket.toggleElevator();
+    	Robot.bucket.toggleElevator();
     }
 
     // Called repeatedly when this Command is scheduled to run

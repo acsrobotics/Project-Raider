@@ -4,10 +4,12 @@ import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -51,14 +53,21 @@ public class DriveTrain extends Subsystem {
 	Ultrasonic 				ultrasonicLeft,
 							ultrasonicRight;
 	
+	AnalogInput  ultraTreatAsRaw;
+	
 	RobotDrive 				drive;
 	
-	public boolean 	objectDetected;
+	
+	SpeedController motor;
+	//CANTalon encoderTest;
+	
+	//public boolean 	objectDetected;
 	
 	public DriveTrain(){
+		motor = new Talon(4);
 		MOTOR_DRIVE_FRONT_LEFT = new Victor(0);
-		MOTOR_DRIVE_FRONT_RIGHT = new Victor(1);
-		MOTOR_DRIVE_BACK_LEFT = new Victor(6);
+		MOTOR_DRIVE_FRONT_RIGHT = new Victor(6);
+		MOTOR_DRIVE_BACK_LEFT = new Victor(1);
 		MOTOR_DRIVE_BACK_RIGHT = new Victor(7);
 		drive = new RobotDrive(MOTOR_DRIVE_FRONT_LEFT, MOTOR_DRIVE_FRONT_RIGHT, MOTOR_DRIVE_BACK_LEFT, MOTOR_DRIVE_BACK_RIGHT);
 		
@@ -66,8 +75,11 @@ public class DriveTrain extends Subsystem {
 		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(0,2,3);
 		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(0,4,5);
 		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
-		ultrasonicLeft = new Ultrasonic(0,1);
+		//ultrasonicLeft = new Ultrasonic(0,1);
 		
+		ultraTreatAsRaw = new AnalogInput(0);
+		
+		//encoderTest = new CANTalon(0);
 //		/*Encoder Initialzation*/
 //		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
 //		encoderDriveRight = new Encoder(RobotMap.ENCODER_DRIVE_RIGHT_PORT_A, RobotMap.ENCODER_DRIVE_RIGHT_PORT_B);
@@ -116,7 +128,13 @@ public class DriveTrain extends Subsystem {
     	drive.arcadeDrive(speed, turn);
     }
     
-
+    public void setSlowSpeed(double speed){
+    	motor.set(speed);
+    }
+    
+//    public CANTalon getEncoder(){
+//    	return this.encoderTest;
+//    }
     
     public void setPosition(PositionStatusCode code){
     	if((code.equals(PositionStatusCode.ALL_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_OUT))){
@@ -182,16 +200,18 @@ public class DriveTrain extends Subsystem {
 //    	SOLENOID.set(DoubleSolenoid.Value.kReverse);
 //    }
     
-    public void setObjectState(boolean set){
-    	this.objectDetected = set;
-    }
-    
-    public boolean getObjectState(){
-    	return this.objectDetected;
-    }
-    
+//    public void setObjectState(boolean set){
+//    	this.objectDetected = set;
+//    }
+//    
+//    public boolean getObjectState(){
+//    	return this.objectDetected;
+//    }
+//    
     public double getUltrasonicDistance(){
-    	return (ultrasonicLeft.getRangeInches() + ultrasonicRight.getRangeInches())/2;
+    	//double val = (ultrasonicLeft.getRangeInches() + ultrasonicRight.getRangeInches())/2;
+    	//System.out.println(val);
+    	return 0.0;
     }
     
     public double getEncoderDistance(){
@@ -207,7 +227,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public double getUltrasonicLeft(){
-    	return ultrasonicLeft.getRangeInches();
+    	//double val = ultrasonicLeft.getRangeInches();
+    	double val = ultraTreatAsRaw.getVoltage();
+//    	System.out.println("Voltage: " + val);
+//    	System.out.println("Value " + ultraTreatAsRaw.getValue() + "\n");
+    	return val;
     }
     
     

@@ -6,6 +6,7 @@ import java.util.List;
 import org.usfirst.frc.team4716.robot.commands.Bucket.BucketMove;
 import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
 import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
+import org.usfirst.frc.team4716.robot.commands.Climber.TestLift;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.PositionTest;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.ToggleAllWheels;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
@@ -36,18 +37,20 @@ public class OI {
 		}
 
 		//--------------Drivetrain testing button set--------------//
-		testButtons.get(0).whenPressed(new ToggleAllWheels());
+		driveButtons.get(0).whenPressed(new ToggleAllWheels());
 		
-		testButtons.get(5).whenPressed(new PositionTest(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
-		testButtons.get(6).whenPressed(new PositionTest(PositionStatusCode.BACK_LEFT_OUT_REST_IN));
-		testButtons.get(10).whenPressed(new PositionTest(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN));
-		testButtons.get(9).whenPressed(new PositionTest(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
+		driveButtons.get(5).whenPressed(new PositionTest(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
+		driveButtons.get(6).whenPressed(new PositionTest(PositionStatusCode.BACK_LEFT_OUT_REST_IN));
+		driveButtons.get(10).whenPressed(new PositionTest(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN));
+		driveButtons.get(9).whenPressed(new PositionTest(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
 		
-		testButtons.get(3).whenPressed(new PositionTest(PositionStatusCode.LEFT_IN_RIGHT_OUT));
-		testButtons.get(4).whenPressed(new PositionTest(PositionStatusCode.LEFT_OUT_RIGHT_IN));
+		driveButtons.get(3).whenPressed(new PositionTest(PositionStatusCode.LEFT_IN_RIGHT_OUT));
+		driveButtons.get(4).whenPressed(new PositionTest(PositionStatusCode.LEFT_OUT_RIGHT_IN));
 		
-		testButtons.get(2).whenPressed(new PositionTest(PositionStatusCode.FRONT_IN_BACK_OUT));
-		testButtons.get(1).whenPressed(new PositionTest(PositionStatusCode.FRONT_OUT_BACK_IN));
+		driveButtons.get(2).whenPressed(new PositionTest(PositionStatusCode.FRONT_IN_BACK_OUT));
+		driveButtons.get(1).whenPressed(new PositionTest(PositionStatusCode.FRONT_OUT_BACK_IN));
+		
+		driveButtons.get(7).whenPressed(new TestLift());
 		
 		//----------------Bucket testing button set------------------------//
 		testButtons.get(0).whenPressed(new LaunchEjectPiston());
@@ -80,7 +83,7 @@ public class OI {
 		}
 		else {
 			//return driveStick.getRawAxis(2);
-			return driveStick.getX();
+			return -driveStick.getX();
 		}
 	}
 
@@ -89,7 +92,7 @@ public class OI {
 			return 0;
 		}
 		else {
-			return driveStick.getY();
+			return -driveStick.getY();
 		}
 	}
 

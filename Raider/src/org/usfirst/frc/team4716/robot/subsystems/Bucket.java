@@ -21,17 +21,17 @@ public class Bucket extends Subsystem {
 //	
 //	
 //	
-//	SpeedController MOTOR_BUCKET_OPS;
+	SpeedController MOTOR_BUCKET_OPS;
 ////					MOTOR_BALL_INTAKE;
 ////	
 //	DigitalInput LIMIT_UP,
 //				 LIMIT_DOWN;
 ////	
-//	DoubleSolenoid PISTON_EJECT;
-//	Direction PISTON_EJECT_STATE;
-//	
-//	DoubleSolenoid PISTON_ELEVATOR;
-//	Direction PISTON_ELEVATOR_STATE;
+	DoubleSolenoid PISTON_EJECT;
+	Direction PISTON_EJECT_STATE;
+	
+	DoubleSolenoid PISTON_ELEVATOR;
+	Direction PISTON_ELEVATOR_STATE;
 //	
 	
 	public Bucket(){
@@ -42,17 +42,17 @@ public class Bucket extends Subsystem {
 //		LIMIT_UP = new DigitalInput(0); 
 //		LIMIT_DOWN = new DigitalInput(1);
 //		
-//		PISTON_EJECT = new DoubleSolenoid(RobotMap.PISTON_EJECT_MODULE_NUMBER
-//										, RobotMap.PISTON_EJECT_FORWARD_CHANNEL
-//										, RobotMap.PISTON_EJECT_REVERSE_CHANNEL);
-//		
-//		PISTON_EJECT_STATE = Direction.IN;
-//		
-//		PISTON_ELEVATOR = new DoubleSolenoid(RobotMap.PISTON_ELEVATOR_MODULE_NUMBER
-//											, RobotMap.PISTON_ELEVATOR_FORWARD_CHANNEL
-//											, RobotMap.PISTON_ELEVATOR_REVERSE_CHANNEL);
-//		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
-//		PISTON_ELEVATOR_STATE = Direction.UP;
+		PISTON_EJECT = new DoubleSolenoid(RobotMap.PISTON_EJECT_MODULE_NUMBER
+										, RobotMap.PISTON_EJECT_FORWARD_CHANNEL
+										, RobotMap.PISTON_EJECT_REVERSE_CHANNEL);
+		
+		PISTON_EJECT_STATE = Direction.IN;
+		
+		PISTON_ELEVATOR = new DoubleSolenoid(RobotMap.PISTON_ELEVATOR_MODULE_NUMBER
+											, RobotMap.PISTON_ELEVATOR_FORWARD_CHANNEL
+											, RobotMap.PISTON_ELEVATOR_REVERSE_CHANNEL);
+		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
+		PISTON_ELEVATOR_STATE = Direction.UP;
 		
 	}
 	
@@ -63,23 +63,23 @@ public class Bucket extends Subsystem {
     }
     
     //-----------Elevator methods-----------//
-//    
-//    public void toggleElevator(){
-//    	if(PISTON_ELEVATOR_STATE == Direction.DOWN){
-//    		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
-//    		PISTON_ELEVATOR_STATE = Direction.UP;
-//    	}else{
-//    		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kForward);
-//    		PISTON_ELEVATOR_STATE = Direction.DOWN;
-//    	}
-//    }
-//    
-//    public Direction getElevatorState(){
-//    	return this.PISTON_ELEVATOR_STATE;
-//    }
-//
-//    //-----------Bucket methods-------------//
-//    
+    
+    public void toggleElevator(){
+    	if(PISTON_ELEVATOR_STATE == Direction.DOWN){
+    		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
+    		PISTON_ELEVATOR_STATE = Direction.UP;
+    	}else{
+    		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kForward);
+    		PISTON_ELEVATOR_STATE = Direction.DOWN;
+    	}
+    }
+    
+    public Direction getElevatorState(){
+    	return this.PISTON_ELEVATOR_STATE;
+    }
+
+    //-----------Bucket methods-------------//
+    
 //    public void moveBucket(Direction dir){
 //    	if(dir.equals(Direction.UP)){
 //    		MOTOR_BUCKET_OPS.set(RobotMap.BUCKET_FOLD_SPEED);
@@ -100,37 +100,37 @@ public class Bucket extends Subsystem {
 //    public boolean isDownLimitHit(){
 //    	return !this.LIMIT_DOWN.get();
 //    }
-//
-//    
-//    //------------Piston methods-------------//
-//    
-//    public void setEjectPosition(Direction dir){
-//    	if(dir.equals(Direction.IN)){
-//    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
-//    		PISTON_EJECT_STATE = Direction.IN;
-//    	}else if(dir.equals(Direction.OUT)){
-//    		PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
-//    		PISTON_EJECT_STATE = Direction.OUT;
-//    		
-//    	}
-//    }
-//    
-//    public void togglePokePosition(){
-//    	System.out.println("BIU");
-//    	if(this.PISTON_EJECT_STATE.equals(Direction.IN)){
-//    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
-//    		PISTON_EJECT_STATE = Direction.OUT;
-//    	}
-//    	else if(this.PISTON_EJECT_STATE.equals(Direction.OUT)){
-//			PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
-//			PISTON_EJECT_STATE = Direction.IN;
-//    	}
-//    }
-//
-//
-//    public boolean isPoked(){
-//    	return PISTON_EJECT_STATE.equals(Direction.IN) ? false : true;
-//    }
-//    
+
+    
+    //------------Piston methods-------------//
+    
+    public void setEjectPosition(Direction dir){
+    	if(dir.equals(Direction.IN)){
+    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+    		PISTON_EJECT_STATE = Direction.IN;
+    	}else if(dir.equals(Direction.OUT)){
+    		PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
+    		PISTON_EJECT_STATE = Direction.OUT;
+    		
+    	}
+    }
+    
+    public void togglePokePosition(){
+    	System.out.println("BIU");
+    	if(this.PISTON_EJECT_STATE.equals(Direction.IN)){
+    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+    		PISTON_EJECT_STATE = Direction.OUT;
+    	}
+    	else if(this.PISTON_EJECT_STATE.equals(Direction.OUT)){
+			PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
+			PISTON_EJECT_STATE = Direction.IN;
+    	}
+    }
+
+
+    public boolean isPoked(){
+    	return PISTON_EJECT_STATE.equals(Direction.IN) ? false : true;
+    }
+    
 }
 
