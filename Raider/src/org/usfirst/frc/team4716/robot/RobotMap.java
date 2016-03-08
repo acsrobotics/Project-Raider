@@ -57,10 +57,11 @@ public class RobotMap {
 					  PISTON_ELEVATOR_FORWARD_CHANNEL = 2,
 					  PISTON_ELEVATOR_REVERSE_CHANNEL = 3;
 	
-	public static double MOTOR_INTAKE_SPEED = 0.7;
+	public static double MOTOR_INTAKE_SPEED = -1.0;
+	public static double MOTOR_OUTTAKE_SPEED = 1.0;
 	
-	public static double BUCKET_FOLD_SPEED = 0.7,
-					     BUCKET_UNFOLD_SPEED = -0.7,
+	public static double BUCKET_FOLD_SPEED = 0.4,
+					     BUCKET_UNFOLD_SPEED = -0.4,
 					     BUCKET_INTAKE_SPEED = 0.7;
 	
 	//---------------------CLIMBER CONFIG--------------------//

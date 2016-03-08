@@ -1,32 +1,31 @@
-package org.usfirst.frc.team4716.robot.commands.DriveTrain;
+package org.usfirst.frc.team4716.robot.commands.Bucket;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
+import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class JoystickDrive extends Command {
-
-    public JoystickDrive() {
+public class SetIntakeMotor extends Command {
+	
+	Direction dir;
+	
+    public SetIntakeMotor(Direction dir) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drivetrain);
+    	requires(Robot.bucket);
+    	this.dir = dir;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	Robot.drivetrain.setSlowSpeed(0.0);
+    	Robot.bucket.setIntakeMotor(dir);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("Encoder Position: " + Robot.drivetrain.getEncoder().getPosition());
-    	Robot.drivetrain.getUltrasonicLeft();
-    	Robot.drivetrain.arcadeDrive(Robot.oi.getJoyY(), Robot.oi.getJoyX());
-//    	System.out.println("From Lift: " + Robot.climber.getExtensionMotor().getPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,10 +35,12 @@ public class JoystickDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.bucket.haltIntakeMotor();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.bucket.haltIntakeMotor();
     }
 }

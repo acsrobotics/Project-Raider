@@ -21,11 +21,11 @@ public class Bucket extends Subsystem {
 //	
 //	
 //	
-	SpeedController MOTOR_BUCKET_OPS;
-////					MOTOR_BALL_INTAKE;
+	public SpeedController MOTOR_BUCKET_OPS,
+					MOTOR_BALL_INTAKE;
 ////	
-//	DigitalInput LIMIT_UP,
-//				 LIMIT_DOWN;
+	DigitalInput LIMIT_UP,
+				 LIMIT_DOWN;
 ////	
 	DoubleSolenoid PISTON_EJECT;
 	Direction PISTON_EJECT_STATE;
@@ -36,11 +36,11 @@ public class Bucket extends Subsystem {
 	
 	public Bucket(){
 //
-//		MOTOR_BUCKET_OPS = new Victor(7);
-//		MOTOR_BALL_INTAKE = new Talon(RobotMap.MOTOR_BALL_INTAKE_PORT);
+		MOTOR_BUCKET_OPS = new Talon(4);
+		MOTOR_BALL_INTAKE = new Talon(2);
 //		
-//		LIMIT_UP = new DigitalInput(0); 
-//		LIMIT_DOWN = new DigitalInput(1);
+		LIMIT_UP = new DigitalInput(0); 
+		LIMIT_DOWN = new DigitalInput(1);
 //		
 		PISTON_EJECT = new DoubleSolenoid(RobotMap.PISTON_EJECT_MODULE_NUMBER
 										, RobotMap.PISTON_EJECT_FORWARD_CHANNEL
@@ -62,6 +62,20 @@ public class Bucket extends Subsystem {
     	setDefaultCommand(new Standby());
     }
     
+    //-----------IntakeMotor method---------//
+    
+    public void setIntakeMotor(Direction dir){
+    	if(dir.equals(Direction.IN)){
+    		MOTOR_BALL_INTAKE.set(RobotMap.MOTOR_INTAKE_SPEED);
+    	}else{
+    		MOTOR_BALL_INTAKE.set(RobotMap.MOTOR_OUTTAKE_SPEED);
+    	}
+    }
+    
+    public void haltIntakeMotor(){
+    	MOTOR_BALL_INTAKE.set(0);
+    }
+    
     //-----------Elevator methods-----------//
     
     public void toggleElevator(){
@@ -80,26 +94,26 @@ public class Bucket extends Subsystem {
 
     //-----------Bucket methods-------------//
     
-//    public void moveBucket(Direction dir){
-//    	if(dir.equals(Direction.UP)){
-//    		MOTOR_BUCKET_OPS.set(RobotMap.BUCKET_FOLD_SPEED);
-//    	}
-//    	if(dir.equals(Direction.DOWN)){
-//    		MOTOR_BUCKET_OPS.set(-RobotMap.BUCKET_FOLD_SPEED);
-//    	}
-//    }
-//
-//    public void haltBucket(){
-//    	this.MOTOR_BUCKET_OPS.set(0.0);
-//    }
-//    
-//    public boolean isUpLimitHit(){
-//    	return !this.LIMIT_UP.get();
-//    }
-//    
-//    public boolean isDownLimitHit(){
-//    	return !this.LIMIT_DOWN.get();
-//    }
+    public void moveBucket(Direction dir){
+    	if(dir.equals(Direction.UP)){
+    		MOTOR_BUCKET_OPS.set(RobotMap.BUCKET_FOLD_SPEED);
+    	}
+    	if(dir.equals(Direction.DOWN)){
+    		MOTOR_BUCKET_OPS.set(RobotMap.BUCKET_UNFOLD_SPEED);
+    	}
+    }
+
+    public void haltBucket(){
+    	this.MOTOR_BUCKET_OPS.set(0.0);
+    }
+    
+    public boolean isUpLimitHit(){
+    	return !this.LIMIT_UP.get();
+    }
+    
+    public boolean isDownLimitHit(){
+    	return this.LIMIT_DOWN.get();
+    }
 
     
     //------------Piston methods-------------//

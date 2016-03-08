@@ -64,7 +64,6 @@ public class DriveTrain extends Subsystem {
 	//public boolean 	objectDetected;
 	
 	public DriveTrain(){
-		motor = new Talon(4);
 		MOTOR_DRIVE_FRONT_LEFT = new Victor(0);
 		MOTOR_DRIVE_FRONT_RIGHT = new Victor(6);
 		MOTOR_DRIVE_BACK_LEFT = new Victor(1);
@@ -128,9 +127,9 @@ public class DriveTrain extends Subsystem {
     	drive.arcadeDrive(speed, turn);
     }
     
-    public void setSlowSpeed(double speed){
-    	motor.set(speed);
-    }
+//    public void setSlowSpeed(double speed){
+//    	motor.set(speed);
+//    }
     
 //    public CANTalon getEncoder(){
 //    	return this.encoderTest;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.usfirst.frc.team4716.robot.commands.Bucket.BucketMove;
 import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
+import org.usfirst.frc.team4716.robot.commands.Bucket.SetIntakeMotor;
 import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
 import org.usfirst.frc.team4716.robot.commands.Climber.TestLift;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.PositionTest;
@@ -55,11 +56,11 @@ public class OI {
 		//----------------Bucket testing button set------------------------//
 		testButtons.get(0).whenPressed(new LaunchEjectPiston());
 		testButtons.get(1).whenPressed(new ToggleElevator());
-		//testButtons.get(2).whenPressed(new SetBucketPosition(Direction.UP));
-		//testButtons.get(3).whenPressed(new SetBucketPosition(Direction.DOWN));
+		testButtons.get(5).whileHeld(new BucketMove(Direction.DOWN));
+		testButtons.get(6).whileHeld(new BucketMove(Direction.UP));
 		
-		testButtons.get(5).whenPressed(new BucketMove(Direction.DOWN));
-		testButtons.get(6).whenPressed(new BucketMove(Direction.UP));
+		testButtons.get(9).whileHeld(new SetIntakeMotor(Direction.IN));
+		testButtons.get(10).whileHeld(new SetIntakeMotor(Direction.OUT));
 		
 		//-----------------------------------------------------------------//
 		
