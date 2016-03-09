@@ -38,18 +38,18 @@ public class OI {
 		}
 
 		//--------------Drivetrain testing button set--------------//
-		driveButtons.get(0).whenPressed(new ToggleAllWheels());
+		driveButtons.get(11).whenPressed(new ToggleAllWheels());
 		
-		driveButtons.get(5).whenPressed(new PositionTest(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
-		driveButtons.get(6).whenPressed(new PositionTest(PositionStatusCode.BACK_LEFT_OUT_REST_IN));
-		driveButtons.get(10).whenPressed(new PositionTest(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN));
-		driveButtons.get(9).whenPressed(new PositionTest(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
+		driveButtons.get(6).whenPressed(new PositionTest(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
+		driveButtons.get(4).whenPressed(new PositionTest(PositionStatusCode.BACK_LEFT_OUT_REST_IN));
+		driveButtons.get(7).whenPressed(new PositionTest(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN));
+		driveButtons.get(5).whenPressed(new PositionTest(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
 		
-		driveButtons.get(3).whenPressed(new PositionTest(PositionStatusCode.LEFT_IN_RIGHT_OUT));
-		driveButtons.get(4).whenPressed(new PositionTest(PositionStatusCode.LEFT_OUT_RIGHT_IN));
+		driveButtons.get(2).whenPressed(new PositionTest(PositionStatusCode.LEFT_IN_RIGHT_OUT));
+		driveButtons.get(0).whenPressed(new PositionTest(PositionStatusCode.LEFT_OUT_RIGHT_IN));
 		
-		driveButtons.get(2).whenPressed(new PositionTest(PositionStatusCode.FRONT_IN_BACK_OUT));
-		driveButtons.get(1).whenPressed(new PositionTest(PositionStatusCode.FRONT_OUT_BACK_IN));
+		driveButtons.get(1).whenPressed(new PositionTest(PositionStatusCode.FRONT_IN_BACK_OUT));
+		driveButtons.get(3).whenPressed(new PositionTest(PositionStatusCode.FRONT_OUT_BACK_IN));
 		
 		driveButtons.get(7).whenPressed(new TestLift());
 		
@@ -62,20 +62,7 @@ public class OI {
 		testButtons.get(9).whileHeld(new SetIntakeMotor(Direction.IN));
 		testButtons.get(10).whileHeld(new SetIntakeMotor(Direction.OUT));
 		
-		//-----------------------------------------------------------------//
-		
-		
-//		driveButtons.get(1).whenPressed(new DriveBackUpPosition());
-//		driveButtons.get(2).whenPressed(new DriveDownPosition());
-//		driveButtons.get(3).whenPressed(new DriveFrontUpPosition());
-//		driveButtons.get(4).whenPressed(new DriveUpPosition());
-//		driveButtons.get(5).whenPressed(new DriveRightUp());
-//		driveButtons.get(6).whenPressed(new DriveLeftUp());
-//		driveButtons.get(7).whenPressed(new DrivePunch());
-//		driveButtons.get(0).whenPressed(new DriveForwardTime(1.0, 5.0));
-//		
-//		operatorButtons.get(1).whileHeld(new BucketIntake());
-//		operatorButtons.get(1).whenReleased(new BucketIntakeFinished());
+		//-----------------------------------------------------------------//	
 	}
 
 	public double getJoyX() {
@@ -83,8 +70,7 @@ public class OI {
 			return 0;
 		}
 		else {
-			//return driveStick.getRawAxis(2);
-			return -driveStick.getX();
+			return driveStick.getRawAxis(2);
 		}
 	}
 
@@ -96,5 +82,4 @@ public class OI {
 			return -driveStick.getY();
 		}
 	}
-
 }
