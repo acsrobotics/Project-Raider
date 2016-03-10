@@ -1,33 +1,4 @@
-<<<<<<< HEAD
-# Java
-*.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-#*.jar -- Deprecated until automatic dependency retrival via gradle or maven
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# Gradle
-.gradle
-build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle/wrapper/gradle-wrapper.jar
-
-# Eclipse
-*.pydevproject
-=======
-
->>>>>>> origin/testing
 .metadata
 bin/
 tmp/
@@ -38,6 +9,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.recommenders
 
 # Eclipse Core
 .project
@@ -48,14 +20,10 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 
-<<<<<<< HEAD
-# CDT-specific
-=======
 # PyDev specific (Python IDE for Eclipse)
 *.pydevproject
 
 # CDT-specific (C/C++ Development Tooling)
->>>>>>> origin/testing
 .cproject
 
 # JDT-specific (Eclipse Java Development Tools)
@@ -64,20 +32,12 @@ local.properties
 # Java annotation processor (APT)
 .factorypath
 
-<<<<<<< HEAD
-# PDT-specific
-=======
 # PDT-specific (PHP Development Tools)
->>>>>>> origin/testing
 .buildpath
 
 # sbteclipse plugin
 .target
 
-<<<<<<< HEAD
-# TeXlipse plugin
-.texlipse
-=======
 # Tern plugin
 .tern-project
 
@@ -89,4 +49,3 @@ local.properties
 
 # Code Recommenders
 .recommenders/
->>>>>>> origin/testing

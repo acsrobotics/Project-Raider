@@ -3,6 +3,7 @@ package org.usfirst.frc.team4716.robot.subsystems;
 import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.commands.Bucket.Standby;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -32,6 +33,8 @@ public class Bucket extends Subsystem {
 	
 	DoubleSolenoid PISTON_ELEVATOR;
 	Direction PISTON_ELEVATOR_STATE;
+	
+	public AnalogInput ultraProximateSensor;
 //	
 	
 	public Bucket(){
@@ -53,6 +56,8 @@ public class Bucket extends Subsystem {
 											, RobotMap.PISTON_ELEVATOR_REVERSE_CHANNEL);
 		PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
 		PISTON_ELEVATOR_STATE = Direction.UP;
+		
+		ultraProximateSensor = new AnalogInput(0);
 		
 	}
 	

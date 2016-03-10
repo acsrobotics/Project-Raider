@@ -26,7 +26,10 @@ public class JoystickDrive extends Command {
     	//System.out.println("Encoder Position: " + Robot.drivetrain.getEncoder().getPosition());
     	Robot.drivetrain.getUltrasonicLeft();
     	Robot.drivetrain.arcadeDrive(Robot.oi.getJoyY(), Robot.oi.getJoyX());
-//    	System.out.println("From Lift: " + Robot.climber.getExtensionMotor().getPosition());
+    	
+    	//-----------testing
+    	System.out.println("Front sensor: " + Robot.drivetrain.ultraTreatAsRaw.getVoltage());
+    	System.out.println("Proximte sensor: " + Robot.bucket.ultraProximateSensor.getVoltage());
     }
 
     // Make this return true when this Command no longer needs to run execute()

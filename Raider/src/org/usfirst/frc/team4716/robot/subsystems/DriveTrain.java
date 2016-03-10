@@ -53,7 +53,7 @@ public class DriveTrain extends Subsystem {
 	Ultrasonic 				ultrasonicLeft,
 							ultrasonicRight;
 	
-	AnalogInput  ultraTreatAsRaw;
+	public AnalogInput             ultraTreatAsRaw;
 	
 	RobotDrive 				drive;
 	
@@ -71,12 +71,12 @@ public class DriveTrain extends Subsystem {
 		drive = new RobotDrive(MOTOR_DRIVE_FRONT_LEFT, MOTOR_DRIVE_FRONT_RIGHT, MOTOR_DRIVE_BACK_LEFT, MOTOR_DRIVE_BACK_RIGHT);
 		
 		SOLENOID_DRIVE_FRONT_LEFT = new DoubleSolenoid(0,0,1);
-		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(0,2,3);
-		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(0,4,5);
+		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(0,4,5);
+		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(0,2,3);
 		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
 		//ultrasonicLeft = new Ultrasonic(0,1);
 		
-		ultraTreatAsRaw = new AnalogInput(0);
+		ultraTreatAsRaw = new AnalogInput(1);
 		
 		//encoderTest = new CANTalon(0);
 //		/*Encoder Initialzation*/

@@ -18,18 +18,20 @@ public class LaunchEjectPiston extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.bucket.isPoked()){
-    		System.out.println("Poker out");
-            Robot.bucket.togglePokePosition();
+    	if(Robot.bucket.getElevatorState().equals(Direction.DOWN)){
+	    	if(Robot.bucket.isPoked()){
+	    		System.out.println("Poker out");
+	            Robot.bucket.togglePokePosition();
+	    	}
+	    	
+	    	try {
+				Thread.sleep(150);
+				Robot.bucket.togglePokePosition();;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
-    	
-    	try {
-			Thread.sleep(150);
-			Robot.bucket.togglePokePosition();;
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     	
     }
 

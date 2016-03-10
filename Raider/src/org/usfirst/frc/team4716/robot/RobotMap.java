@@ -61,7 +61,7 @@ public class RobotMap {
 	public static double MOTOR_OUTTAKE_SPEED = 1.0;
 	
 	public static double BUCKET_FOLD_SPEED = 0.4,
-					     BUCKET_UNFOLD_SPEED = -0.6,
+					     BUCKET_UNFOLD_SPEED = -0.5,
 					     BUCKET_INTAKE_SPEED = 0.7;
 	
 	//---------------------CLIMBER CONFIG--------------------//

@@ -31,7 +31,7 @@ public class OI {
 	List<JoystickButton> testButtons = new ArrayList<JoystickButton>();
 
 	public OI() {
-		for (int x = 1; x < 12; x++) {
+		for (int x = 1; x < 15; x++) {
 			driveButtons.add(new JoystickButton(driveStick, x));
 			operatorButtons.add(new JoystickButton(operatorStick, x));
 			testButtons.add(new JoystickButton(testStick, x));
@@ -51,7 +51,7 @@ public class OI {
 		driveButtons.get(1).whenPressed(new PositionTest(PositionStatusCode.FRONT_IN_BACK_OUT));
 		driveButtons.get(3).whenPressed(new PositionTest(PositionStatusCode.FRONT_OUT_BACK_IN));
 		
-		driveButtons.get(7).whenPressed(new TestLift());
+//		driveButtons.get(7).whenPressed(new TestLift());
 		
 		//----------------Bucket testing button set------------------------//
 		testButtons.get(0).whenPressed(new LaunchEjectPiston());
@@ -70,7 +70,7 @@ public class OI {
 			return 0;
 		}
 		else {
-			return driveStick.getRawAxis(2);
+			return -driveStick.getRawAxis(2);
 		}
 	}
 
