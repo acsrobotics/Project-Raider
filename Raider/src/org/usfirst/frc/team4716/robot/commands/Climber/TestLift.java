@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.Calendar;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
+import org.usfirst.frc.team4716.robot.subsystems.Climber;
 
 import com.ni.vision.NIVision.CalibrationThumbnailType;
 

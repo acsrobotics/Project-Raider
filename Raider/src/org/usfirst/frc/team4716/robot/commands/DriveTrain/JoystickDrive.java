@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
+import org.usfirst.frc.team4716.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 

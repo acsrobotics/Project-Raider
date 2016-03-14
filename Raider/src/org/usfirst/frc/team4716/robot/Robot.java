@@ -5,9 +5,9 @@ import java.io.FileReader;
 
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
+import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;

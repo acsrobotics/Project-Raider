@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4716.robot.subsystems.Climber;
+package org.usfirst.frc.team4716.robot.subsystems;
 
 import org.usfirst.frc.team4716.robot.RobotMap;
 
