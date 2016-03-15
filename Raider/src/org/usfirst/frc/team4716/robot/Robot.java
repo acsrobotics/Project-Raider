@@ -2,11 +2,19 @@
 package org.usfirst.frc.team4716.robot;
 
 import java.io.FileReader;
+import java.io.IOException;
+import java.net.NoRouteToHostException;
 
+import org.usfirst.frc.team4716.robot.networking.Client;
+import org.usfirst.frc.team4716.robot.networking.TypeBridge;
+import org.usfirst.frc.team4716.robot.networking.dataTypes.RobotMapMirror;
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
+
+import com.google.gson.TypeAdapter;
+
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,7 +36,9 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain drivetrain = new DriveTrain();
 	public static final Bucket     bucket     = new Bucket();
 	public static final Climber    climber    = new Climber();
-	public static OI oi;
+	public static       OI         oi;
+	
+	public static Client client;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -40,9 +50,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-        //chooser.addDefault("Nothing", new DoNothing());
-//        chooser.addObject("Low Goal", object);
-        
+        try {
+			Robot.client = new Client("10.47.16.255", 3003);
+		} catch (NoRouteToHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -70,7 +84,7 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
-        
+        Robot.client.update();
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
@@ -106,6 +120,15 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	Robot.client.update();
+    	RobotMap tempMap = new RobotMap();// just get a dummy object
+    	try {
+    		// update RobotMap with new data
+			TypeBridge.copy(tempMap, Robot.client.getDataObject(new RobotMapMirror().getClass()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Scheduler.getInstance().run();
     }
     
