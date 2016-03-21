@@ -12,8 +12,6 @@ import org.usfirst.frc.team4716.robot.networking.dataTypes.RobotMapMirror;
 
 
 
-
-
 public class Client {
 	
 	String hostName;
@@ -63,8 +61,8 @@ public class Client {
 	}
 	
 	public void update(){
-		this.configSocketClient.updateConfigData();
-		this.visionSocketClient.updateConfigData();
+		this.configSocketClient.updateData();
+		this.visionSocketClient.updateData();
 	}
 	
 	@SuppressWarnings("unchecked")

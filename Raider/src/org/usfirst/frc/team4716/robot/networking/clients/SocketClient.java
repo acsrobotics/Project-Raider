@@ -54,7 +54,7 @@ public class SocketClient<DataObjectType> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void updateConfigData(){
+	public void updateData(){
 		int retry = 0;
 		while(retry < 10){
 			try {
@@ -83,8 +83,5 @@ public class SocketClient<DataObjectType> {
 	public synchronized void setDataObject(DataObjectType data){
 		this.dataObject = data;
 	}
-	
-	
-	// TODO synchronized method for IO 
 	
 }
