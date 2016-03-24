@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,17 +8,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveLeftUp extends Command {
+public class SetPosition extends Command {
 
-    public DriveLeftUp() {
+	PositionStatusCode code;
+    public SetPosition(PositionStatusCode code) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
+    	this.code = code;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    //	Robot.drivetrain.setPosition(PositionStatusCode.LEFT_UP_RIIGHT_DOWN);
+    	Robot.drivetrain.setPosition(code);
     }
 
     // Called repeatedly when this Command is scheduled to run
