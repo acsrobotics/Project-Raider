@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team4716.robot;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.NoRouteToHostException;
 
@@ -12,8 +11,6 @@ import org.usfirst.frc.team4716.robot.networking.dataTypes.RobotMapMirror;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
-
-import com.google.gson.TypeAdapter;
 
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 

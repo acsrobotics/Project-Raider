@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import com.google.gson.Gson;
 
-
 public class SocketClient<DataObjectType> {
 
 	InetAddress hostName;
@@ -83,5 +82,8 @@ public class SocketClient<DataObjectType> {
 	public synchronized void setDataObject(DataObjectType data){
 		this.dataObject = data;
 	}
+	
+	
+	// TODO synchronized method for IO 
 	
 }

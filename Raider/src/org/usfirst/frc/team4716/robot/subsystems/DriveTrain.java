@@ -3,13 +3,12 @@ package org.usfirst.frc.team4716.robot.subsystems;
 import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -45,7 +44,7 @@ public class DriveTrain extends Subsystem {
 							SOLENOID_DRIVE_BACK_LEFT,
 							SOLENOID_DRIVE_BACK_RIGHT;
 
-	AnalogGyro 				gyro;
+	ADXRS450_Gyro 			gyro;
 
 	Encoder 				encoderDriveLeft,
 							encoderDriveRight;
@@ -85,8 +84,7 @@ public class DriveTrain extends Subsystem {
 //		
 //
 //		/*Gyro Initialzation*/
-//		gyro = new AnalogGyro(RobotMap.GYRO_MAIN_PORT);
-//		gyro.setSensitivity(RobotMap.GYRO_SENSITIVITY);
+		gyro = new ADXRS450_Gyro();
 
 		/*LiveWindow Initialzation*/
 		LiveWindow.addActuator("DriveTrain", "Front Left CIM", (Victor) MOTOR_DRIVE_FRONT_LEFT);
