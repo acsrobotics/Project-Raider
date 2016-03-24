@@ -135,15 +135,23 @@ public class Bucket extends Subsystem {
     }
     
     public void togglePokePosition(){
-    	System.out.println("BIU");
-    	if(this.PISTON_EJECT_STATE.equals(Direction.IN)){
-    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
-    		PISTON_EJECT_STATE = Direction.OUT;
-    	}
-    	else if(this.PISTON_EJECT_STATE.equals(Direction.OUT)){
-			PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
-			PISTON_EJECT_STATE = Direction.IN;
-    	}
+    	
+    	PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
+    	try {
+			Thread.sleep(150);
+			PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+		} catch (InterruptedException e) {
+
+		}
+//    	System.out.println("BIU");
+//    	if(this.PISTON_EJECT_STATE.equals(Direction.IN)){
+//    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+//    		PISTON_EJECT_STATE = Direction.OUT;
+//    	}
+//    	else if(this.PISTON_EJECT_STATE.equals(Direction.OUT)){
+//			PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
+//			PISTON_EJECT_STATE = Direction.IN;
+//    	}
     }
 
 

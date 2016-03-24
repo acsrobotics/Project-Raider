@@ -1,12 +1,15 @@
 
 package org.usfirst.frc.team4716.robot;
 
-import java.io.FileReader;
-
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoDoNothing;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardHigh;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardLow;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverse;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverseHigh;
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
-import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
+import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -40,8 +43,12 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-        //chooser.addDefault("Nothing", new DoNothing());
-//        chooser.addObject("Low Goal", object);
+        chooser.addDefault("Nothing", new AutoDoNothing());
+        chooser.addObject("Low Forward", new AutoMoveForwardLow());
+        chooser.addObject("High Forward", new AutoMoveForwardHigh());
+        chooser.addObject("Low Forward Reverse", new AutoMoveForwardReverse());
+        chooser.addObject("High Forward Reverse", new AutoMoveForwardReverseHigh());
+        
         
         SmartDashboard.putData("Auto mode", chooser);
     }

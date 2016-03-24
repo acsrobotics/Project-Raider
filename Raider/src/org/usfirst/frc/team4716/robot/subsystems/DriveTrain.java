@@ -3,6 +3,7 @@ package org.usfirst.frc.team4716.robot.subsystems;
 import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -45,7 +46,9 @@ public class DriveTrain extends Subsystem {
 							SOLENOID_DRIVE_BACK_LEFT,
 							SOLENOID_DRIVE_BACK_RIGHT;
 
-	AnalogGyro 				gyro;
+	ADXRS450_Gyro 			gyro;
+	
+//	ADXRS450_Gyro gyroSPI;
 
 	Encoder 				encoderDriveLeft,
 							encoderDriveRight;

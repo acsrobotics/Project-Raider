@@ -25,7 +25,7 @@ public class JoystickDrive extends Command {
     protected void execute() {
     	//System.out.println("Encoder Position: " + Robot.drivetrain.getEncoder().getPosition());
     	Robot.drivetrain.getUltrasonicLeft();
-    	Robot.drivetrain.arcadeDrive(Robot.oi.getJoyY(), Robot.oi.getJoyX());
+    	Robot.drivetrain.tankDrive(Robot.oi.getJoyY(), Robot.oi.getJoyRY());
     	
     	//-----------testing
     	System.out.println("Front sensor: " + Robot.drivetrain.ultraTreatAsRaw.getVoltage());

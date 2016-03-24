@@ -54,8 +54,8 @@ public class OI {
 //		driveButtons.get(7).whenPressed(new TestLift());
 		
 		//----------------Bucket testing button set------------------------//
-		testButtons.get(0).whenPressed(new LaunchEjectPiston());
-		testButtons.get(1).whenPressed(new ToggleElevator());
+		testButtons.get(1).whenPressed(new LaunchEjectPiston());
+		testButtons.get(2).whenPressed(new ToggleElevator());
 		testButtons.get(5).whileHeld(new BucketMove(Direction.DOWN));
 		testButtons.get(6).whileHeld(new BucketMove(Direction.UP));
 		
@@ -71,6 +71,15 @@ public class OI {
 		}
 		else {
 			return -driveStick.getRawAxis(2);
+		}
+	}
+	
+	public double getJoyRY(){
+		if (driveStick.getRawAxis(3) <= 0.1 && driveStick.getRawAxis(3) >= -0.1) {
+			return 0;
+		}
+		else {
+			return -driveStick.getRawAxis(3);
 		}
 	}
 
