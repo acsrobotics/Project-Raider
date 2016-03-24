@@ -1,7 +1,8 @@
 package org.usfirst.frc.team4716.robot.commands.Auto;
 
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveDownPosition;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.SetPosition;
+import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -12,7 +13,7 @@ public class AutoMoveForwardLow extends CommandGroup {
     
     public  AutoMoveForwardLow() {
     	
-    	addSequential(new DriveDownPosition());
+    	addSequential(new SetPosition(PositionStatusCode.ALL_IN));
     	addSequential(new DriveForwardTime(0.6, 3.0));
         // Add Commands here:
         // e.g. addSequential(new Command1());
