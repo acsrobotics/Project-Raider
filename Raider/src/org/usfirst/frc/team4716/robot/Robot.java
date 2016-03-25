@@ -2,6 +2,7 @@
 package org.usfirst.frc.team4716.robot;
 
 import java.io.IOException;
+import java.net.NoRouteToHostException;
 
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoDoNothing;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardHigh;
@@ -50,6 +51,12 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		try {
+			client = new Client("10.47.16.255", 3003);
+		} catch (NoRouteToHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         chooser = new SendableChooser();
         chooser.addDefault("Nothing", new AutoDoNothing());
         chooser.addObject("Low Forward", new AutoMoveForwardLow());
@@ -121,15 +128,15 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	Robot.client.update();
-    	RobotMap tempMap = new RobotMap();// just get a dummy object
-    	try {
-    		// update RobotMap with new data
-			TypeBridge.copy(tempMap, Robot.client.getDataObject(new RobotMapMirror().getClass()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	Robot.client.update();
+//    	RobotMap tempMap = new RobotMap();// just get a dummy object
+//    	try {
+//    		// update RobotMap with new data
+//			TypeBridge.copy(tempMap, Robot.client.getDataObject(new RobotMapMirror().getClass()));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         Scheduler.getInstance().run();
     }
     

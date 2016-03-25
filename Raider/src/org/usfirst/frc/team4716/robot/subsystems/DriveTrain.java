@@ -141,15 +141,22 @@ public class DriveTrain extends Subsystem {
     
     public void setPosition(PositionStatusCode code){
     	if((code.equals(PositionStatusCode.ALL_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_OUT))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
-    							, DoubleSolenoid.Value.kForward
-    							, DoubleSolenoid.Value.kForward
-    							, DoubleSolenoid.Value.kForward);
+
+        	this.SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kForward);
+        	this.SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kForward);
+        	
+        	try {
+    			Thread.sleep(1500);
+    		} catch (InterruptedException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+        	
+        	this.SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kForward);
+        	this.SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kForward);
     	}else if((code.equals(PositionStatusCode.ALL_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse);
+    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse
+    				, DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
     	}else if((code.equals(PositionStatusCode.FRONT_OUT_BACK_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_OUT_BACK_IN))){
     		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
 					, DoubleSolenoid.Value.kForward
@@ -272,6 +279,7 @@ public class DriveTrain extends Subsystem {
     		){
     	this.SOLENOID_DRIVE_BACK_LEFT.set(backLeft);
     	this.SOLENOID_DRIVE_BACK_RIGHT.set(backRight);
+    	
     	this.SOLENOID_DRIVE_FRONT_LEFT.set(frontLeft);
     	this.SOLENOID_DRIVE_FRONT_RIGHT.set(frontRight);
     }

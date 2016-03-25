@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
 import org.usfirst.frc.team4716.robot.Robot;
+import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,7 +26,7 @@ public class JoystickDrive extends Command {
     protected void execute() {
     	//System.out.println("Encoder Position: " + Robot.drivetrain.getEncoder().getPosition());
     	Robot.drivetrain.getUltrasonicLeft();
-    	Robot.drivetrain.tankDrive(Robot.oi.getJoyY(), Robot.oi.getJoyRY());
+    	Robot.drivetrain.arcadeDrive(Robot.oi.getJoyY() * RobotMap.DRIVE_MODIFIER, Robot.oi.getJoyX());
     	
     	//-----------testing
     	System.out.println("Front sensor: " + Robot.drivetrain.ultraTreatAsRaw.getVoltage());

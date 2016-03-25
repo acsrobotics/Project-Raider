@@ -40,7 +40,7 @@ public class OI {
 		//--------------Drivetrain testing button set--------------//
 		driveButtons.get(11).whenPressed(new ToggleAllWheels());
 		
-		driveButtons.get(6).whenPressed(new SetPosition(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
+		/*driveButtons.get(6).whenPressed(new SetPosition(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
 		driveButtons.get(4).whenPressed(new SetPosition(PositionStatusCode.BACK_LEFT_OUT_REST_IN));
 		driveButtons.get(7).whenPressed(new SetPosition(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN));
 		driveButtons.get(5).whenPressed(new SetPosition(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
@@ -49,7 +49,7 @@ public class OI {
 		driveButtons.get(0).whenPressed(new SetPosition(PositionStatusCode.LEFT_OUT_RIGHT_IN));
 		
 		driveButtons.get(1).whenPressed(new SetPosition(PositionStatusCode.FRONT_IN_BACK_OUT));
-		driveButtons.get(3).whenPressed(new SetPosition(PositionStatusCode.FRONT_OUT_BACK_IN));
+		driveButtons.get(3).whenPressed(new SetPosition(PositionStatusCode.FRONT_OUT_BACK_IN));*/
 		
 //		driveButtons.get(7).whenPressed(new TestLift());
 		
@@ -66,11 +66,11 @@ public class OI {
 	}
 
 	public double getJoyX() {
-		if (driveStick.getRawAxis(2) <= 0.1 && driveStick.getRawAxis(2) >= -0.1) {
+		if (driveStick.getX() <= 0.1 && driveStick.getX() >= -0.1) {
 			return 0;
 		}
 		else {
-			return -driveStick.getRawAxis(2);
+			return -driveStick.getX();
 		}
 	}
 	
@@ -84,11 +84,11 @@ public class OI {
 	}
 
 	public double getJoyY() {
-		if (driveStick.getY() <= 0.1 && driveStick.getY() >= -0.1) {
+		if (driveStick.getRawAxis(3) <= 0.1 && driveStick.getRawAxis(3) >= -0.1) {
 			return 0;
 		}
 		else {
-			return -driveStick.getY();
+			return -driveStick.getRawAxis(3);
 		}
 	}
 }

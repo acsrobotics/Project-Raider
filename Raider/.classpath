@@ -19,5 +19,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Json"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Gson"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gson"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

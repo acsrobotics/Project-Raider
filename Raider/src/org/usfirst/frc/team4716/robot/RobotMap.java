@@ -34,7 +34,7 @@ public class RobotMap {
 	public static int       ULTRASONIC_LEFT_PORT = 4,
 							ULTRASONIC_RIGHT_PORT = 5;
 	
-	public static double DRIVE_MODIFIER = 1.0;
+	public static double DRIVE_MODIFIER = 0.85;
 	
 	
 	//---------------------BUCKET CONFIG--------------------//
