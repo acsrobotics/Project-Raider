@@ -34,7 +34,7 @@ public class RobotMap {
 	public static int       ULTRASONIC_LEFT_PORT = 4,
 							ULTRASONIC_RIGHT_PORT = 5;
 	
-	public static double DRIVE_MODIFIER = 0.85;
+	public static double DRIVE_MODIFIER = 0.95;
 	
 	
 	//---------------------BUCKET CONFIG--------------------//
@@ -58,7 +58,7 @@ public class RobotMap {
 	
 	public static double BUCKET_FOLD_SPEED = 0.6,
 					     BUCKET_UNFOLD_SPEED = -0.6,
-					     BUCKET_INTAKE_SPEED = 0.7;
+					     BUCKET_INTAKE_SPEED = 0.9;
 	
 	//---------------------CLIMBER CONFIG--------------------//
 	

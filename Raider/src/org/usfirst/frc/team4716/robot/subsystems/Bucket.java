@@ -92,6 +92,10 @@ public class Bucket extends Subsystem {
     	}
     }
     
+    public void toggleElevatorDown(){
+    	PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
+    }
+    
     public Direction getElevatorState(){
     	return this.PISTON_ELEVATOR_STATE;
     }

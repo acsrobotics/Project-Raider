@@ -14,7 +14,7 @@ public class AutoMoveForwardHigh extends CommandGroup {
     public  AutoMoveForwardHigh() {
     	
     	addSequential(new SetPosition(PositionStatusCode.ALL_OUT));
-    	addSequential(new DriveForwardTime(0.6, 3.0));
+    	addSequential(new DriveForwardTime(0.8, 5.0));  //0.7 rotations at this speed. (26inches per second)
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -14,8 +14,8 @@ public class AutoMoveForwardReverseHigh extends CommandGroup {
     public  AutoMoveForwardReverseHigh() {
     	
     	addSequential(new SetPosition(PositionStatusCode.ALL_OUT));
-    	addSequential(new DriveForwardTime(0.6, 3.0));
-    	addSequential(new DriveForwardTime(-0.6, 3.0));
+    	addSequential(new DriveForwardTime(0.8, 5.0));
+    	addSequential(new DriveForwardTime(-0.8, 5.0));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

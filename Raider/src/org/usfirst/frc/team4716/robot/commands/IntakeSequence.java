@@ -1,21 +1,19 @@
-package org.usfirst.frc.team4716.robot.commands.Auto;
+package org.usfirst.frc.team4716.robot.commands;
 
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.SetPosition;
-import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
+import org.usfirst.frc.team4716.robot.commands.Bucket.SetIntakeMotor;
+import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevatorDown;
+import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoMoveForwardReverse extends CommandGroup {
+public class IntakeSequence extends CommandGroup {
     
-    public  AutoMoveForwardReverse() {
-    	
-    	addSequential(new SetPosition(PositionStatusCode.ALL_IN));
-    	addSequential(new DriveForwardTime(0.8, 5.0));
-    	addSequential(new DriveForwardTime(-0.8, 5.0));
+    public  IntakeSequence() {
+    	addSequential(new ToggleElevatorDown());
+    	addParallel(new SetIntakeMotor(Direction.IN));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

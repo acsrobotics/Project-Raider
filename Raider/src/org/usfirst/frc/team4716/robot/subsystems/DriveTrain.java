@@ -146,7 +146,7 @@ public class DriveTrain extends Subsystem {
         	this.SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kForward);
         	
         	try {
-    			Thread.sleep(1500);
+    			Thread.sleep(500);
     		} catch (InterruptedException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -254,11 +254,11 @@ public class DriveTrain extends Subsystem {
     public void driveStraight(double _speed){
     	double rightpow, leftpow;
     	double angle = gyro.getAngle();
-    	double kP = 0.02;
-    	if(2 < angle){
+    	double kP = 0.05;
+    	if(5 < angle){
     		rightpow =  _speed - kP * angle;
     		tankDrive(rightpow, _speed);
-    	}else if(-2 > angle){
+    	}else if(-5 > angle){
     		leftpow =  _speed + kP * angle;
     		tankDrive(_speed, leftpow);
     	}else{

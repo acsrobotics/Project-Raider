@@ -1,22 +1,17 @@
 package org.usfirst.frc.team4716.robot.commands.Auto;
 
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
-import org.usfirst.frc.team4716.robot.commands.DriveTrain.SetPosition;
-import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoMoveForwardReverse extends CommandGroup {
+public class AutoForwardReverseDefault extends CommandGroup {
     
-    public  AutoMoveForwardReverse() {
-    	
-    	addSequential(new SetPosition(PositionStatusCode.ALL_IN));
-    	addSequential(new DriveForwardTime(0.8, 5.0));
-    	addSequential(new DriveForwardTime(-0.8, 5.0));
-    	
+    public  AutoForwardReverseDefault() {
+    	addSequential(new DriveForwardTime(-0.8,3.5));
+    	addSequential(new DriveForwardTime(0.8, 3.5));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

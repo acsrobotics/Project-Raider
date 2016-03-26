@@ -1,17 +1,16 @@
 
 package org.usfirst.frc.team4716.robot;
 
-import java.io.IOException;
 import java.net.NoRouteToHostException;
 
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoDoNothing;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoForwardReverseDefault;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardHigh;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardLow;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverse;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverseHigh;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
 import org.usfirst.frc.team4716.robot.networking.Client;
-import org.usfirst.frc.team4716.robot.networking.TypeBridge;
-import org.usfirst.frc.team4716.robot.networking.dataTypes.RobotMapMirror;
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
@@ -63,6 +62,9 @@ public class Robot extends IterativeRobot {
         chooser.addObject("High Forward", new AutoMoveForwardHigh());
         chooser.addObject("Low Forward Reverse", new AutoMoveForwardReverse());
         chooser.addObject("High Forward Reverse", new AutoMoveForwardReverseHigh());
+        chooser.addObject("Reverse Default", new DriveForwardTime(-0.8,4.0));
+        chooser.addObject("Forward Default", new DriveForwardTime(0.8,5.0));
+        chooser.addObject("Forward Reverse Default", new AutoForwardReverseDefault());
         
         
         SmartDashboard.putData("Auto mode", chooser);
