@@ -9,8 +9,10 @@ import org.usfirst.frc.team4716.robot.commands.Bucket.BucketMove;
 import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
 import org.usfirst.frc.team4716.robot.commands.Bucket.SetIntakeMotor;
 import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.SetPosition;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.ToggleAllWheels;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
+import org.usfirst.frc.team4716.robot.subsystems.DriveTrain.PositionStatusCode;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -39,16 +41,8 @@ public class OI {
 		//--------------Drivetrain testing button set--------------//
 		driveButtons.get(11).whenPressed(new ToggleAllWheels());
 		
-		/*driveButtons.get(6).whenPressed(new SetPosition(PositionStatusCode.FRONT_LEFT_OUT_REST_IN));
-		driveButtons.get(4).whenPressed(new SetPosition(PositionStatusCode.BACK_LEFT_OUT_REST_IN));
-		driveButtons.get(7).whenPressed(new SetPosition(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN));
-		driveButtons.get(5).whenPressed(new SetPosition(PositionStatusCode.BACK_RIGHT_OUT_REST_IN));
-		
-		driveButtons.get(2).whenPressed(new SetPosition(PositionStatusCode.LEFT_IN_RIGHT_OUT));
-		driveButtons.get(0).whenPressed(new SetPosition(PositionStatusCode.LEFT_OUT_RIGHT_IN));
-		
 		driveButtons.get(1).whenPressed(new SetPosition(PositionStatusCode.FRONT_IN_BACK_OUT));
-		driveButtons.get(3).whenPressed(new SetPosition(PositionStatusCode.FRONT_OUT_BACK_IN));*/
+		driveButtons.get(3).whenPressed(new SetPosition(PositionStatusCode.FRONT_OUT_BACK_IN));
 		
 //		driveButtons.get(7).whenPressed(new TestLift());
 		

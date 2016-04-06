@@ -1,5 +1,10 @@
 package org.usfirst.frc.team4716.robot.subsystems;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.event.ListSelectionEvent;
+
 import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
@@ -7,6 +12,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -23,17 +29,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem {
 	
 	public enum PositionStatusCode {
-		ALL_IN,
-		ALL_OUT,
-		LEFT_IN_RIGHT_OUT,
-		LEFT_OUT_RIGHT_IN,
-		FRONT_OUT_BACK_IN,
-		FRONT_IN_BACK_OUT,
-		FRONT_LEFT_OUT_REST_IN,
-		FRONT_RIGHT_OUT_REST_IN,
-		BACK_LEFT_OUT_REST_IN,
-		BACK_RIGHT_OUT_REST_IN,
-		FUBAR // Fucked-Up-Beyond-Recognition
+		ALL_IN(new DoubleSolenoid.Value[] {Value.kReverse, Value.kReverse, Value.kReverse, Value.kReverse}),
+		ALL_OUT(new DoubleSolenoid.Value[] {Value.kForward, Value.kForward, Value.kForward, Value.kForward}),
+		FRONT_OUT_BACK_IN(new DoubleSolenoid.Value[] {Value.kForward, Value.kForward, Value.kReverse, Value.kReverse}),
+		FRONT_IN_BACK_OUT(new DoubleSolenoid.Value[] {Value.kReverse, Value.kReverse, Value.kForward, Value.kForward}),
+		FUBAR(null); // Fucked-Up-Beyond-Recognition
+		
+		DoubleSolenoid.Value[] dsv = new DoubleSolenoid.Value[4];
+		
+		PositionStatusCode(DoubleSolenoid.Value[] dss) {
+			dsv = dss;
+		}
+		
+		public DoubleSolenoid.Value[] getDoubleSolenoidArray() {
+			return dsv;
+		}
 	}
     
 	SpeedController 		MOTOR_DRIVE_FRONT_LEFT,
@@ -42,9 +52,7 @@ public class DriveTrain extends Subsystem {
    							MOTOR_DRIVE_BACK_RIGHT;
 
 	DoubleSolenoid			SOLENOID_DRIVE_FRONT_LEFT,
-							SOLENOID_DRIVE_FRONT_RIGHT,
-							SOLENOID_DRIVE_BACK_LEFT,
-							SOLENOID_DRIVE_BACK_RIGHT;
+							SOLENOID_DRIVE_FRONT_RIGHT;
 
 	ADXRS450_Gyro 			gyro;
 	
@@ -140,6 +148,7 @@ public class DriveTrain extends Subsystem {
 //    }
     
     public void setPosition(PositionStatusCode code){
+    	
     	if((code.equals(PositionStatusCode.ALL_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_OUT))){
 
         	this.SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kForward);
@@ -154,49 +163,13 @@ public class DriveTrain extends Subsystem {
         	
         	this.SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kForward);
         	this.SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.ALL_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse
-    				, DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_OUT_BACK_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_OUT_BACK_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_IN_BACK_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_IN_BACK_OUT))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.LEFT_IN_RIGHT_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_IN_RIGHT_OUT))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward);
-    	}else if((code.equals(PositionStatusCode.LEFT_OUT_RIGHT_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.LEFT_OUT_RIGHT_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_LEFT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_LEFT_OUT_REST_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.FRONT_RIGHT_OUT_REST_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.BACK_LEFT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.BACK_LEFT_OUT_REST_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward
-					, DoubleSolenoid.Value.kReverse);
-    	}else if((code.equals(PositionStatusCode.BACK_RIGHT_OUT_REST_IN) && !this.getPositionStatusCode().equals(PositionStatusCode.BACK_RIGHT_OUT_REST_IN))){
-    		this.setSolenoidPosition(DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kReverse
-					, DoubleSolenoid.Value.kForward);
+    	} else {
+        	DoubleSolenoid.Value a = code.getDoubleSolenoidArray()[0];
+        	DoubleSolenoid.Value b = code.getDoubleSolenoidArray()[1];
+        	DoubleSolenoid.Value c = code.getDoubleSolenoidArray()[2];
+        	DoubleSolenoid.Value d = code.getDoubleSolenoidArray()[3];
+        	
+        	this.setSolenoidPosition(a, b, c, d);	
     	}
     }
     
@@ -285,59 +258,20 @@ public class DriveTrain extends Subsystem {
     }
     
     public PositionStatusCode getPositionStatusCode(){
-    	if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-    		return PositionStatusCode.ALL_OUT;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.ALL_IN;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-    		return PositionStatusCode.LEFT_IN_RIGHT_OUT;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.LEFT_OUT_RIGHT_IN;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-    		return PositionStatusCode.FRONT_OUT_BACK_IN;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
-    		&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
-    		&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-    		return PositionStatusCode.FRONT_IN_BACK_OUT;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
-        	&& this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
-        	&& this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kForward
-        	&& this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-        	return PositionStatusCode.FRONT_LEFT_OUT_REST_IN;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kForward){
-            return PositionStatusCode.FRONT_RIGHT_OUT_REST_IN;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kForward
-            && this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-            return PositionStatusCode.BACK_LEFT_OUT_REST_IN;
-    	}else if(this.SOLENOID_DRIVE_BACK_LEFT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_BACK_RIGHT.get() == DoubleSolenoid.Value.kForward
-            && this.SOLENOID_DRIVE_FRONT_LEFT.get() == DoubleSolenoid.Value.kReverse
-            && this.SOLENOID_DRIVE_FRONT_RIGHT.get() == DoubleSolenoid.Value.kReverse){
-            return PositionStatusCode.BACK_RIGHT_OUT_REST_IN;
-    	}else {
-    		return PositionStatusCode.FUBAR;
+    	DoubleSolenoid.Value[] classSolenoids = new DoubleSolenoid.Value[] {
+    			SOLENOID_DRIVE_FRONT_LEFT.get(), 
+    			SOLENOID_DRIVE_FRONT_RIGHT.get()
+    	};
+    	
+    	PositionStatusCode toReturn = PositionStatusCode.FUBAR;
+    	
+    	for (PositionStatusCode ds : PositionStatusCode.values()) {
+    		if (Arrays.equals(ds.getDoubleSolenoidArray(), classSolenoids)) {
+    			toReturn = ds;
+    		}
     	}
+    	
+    	return toReturn;
     }
     
     
