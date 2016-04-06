@@ -27,17 +27,12 @@ public class TestLift extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	climber.enable();
-    	//climber.enableControl();
-//    	Robot.climber.getExtensionMotor().setEncPosition(0);
-//    	Robot.climber.getExtensionMotor().setPosition(10000);
     	
-//    	climber.reset();
     	climber.changeControlMode(CANTalon.TalonControlMode.Position);
     	climber.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
     	climber.setPID(1.0, 0.0, 0.0);
     	climber.setInverted(false);
     	climber.setPosition(0);
-    	//climber.set(0);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -62,6 +62,10 @@ public class RobotMap {
 	
 	//---------------------CLIMBER CONFIG--------------------//
 	
+	public static int EJECT_LOCK_MODULE = 1,
+			          EJECT_LOCK_FORWARD_CH = 8,
+			          EJECT_LOCK_BACKWARD_CH = 9;
+	
 	public static int MOTOR_ANGLE_PORT = 4,
 					  MOTOR_EXTENSION_PORT = 5;
 	
