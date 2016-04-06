@@ -292,6 +292,21 @@ public class DriveTrain extends Subsystem {
     	}
     }
     
+    public void turnOnSpot(double _speed){
+    	double rightpow, leftpow;
+    	double angle = gyro.getAngle();
+    	double kP = 0.05;
+    	if(5 < angle){
+    		rightpow =  _speed - kP * angle;
+    		tankDrive(rightpow, 0);
+    	}else if(-5 > angle){
+    		leftpow =  _speed + kP * angle;
+    		tankDrive(0, leftpow);
+    	}else{
+    		tankDrive(0,0);
+    	}
+    }
+    
     
     // LOG
     public void log(){

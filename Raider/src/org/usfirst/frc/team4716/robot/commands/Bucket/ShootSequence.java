@@ -1,7 +1,8 @@
-package org.usfirst.frc.team4716.robot.commands;
+package org.usfirst.frc.team4716.robot.commands.Bucket;
 
-import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
-import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
+import org.usfirst.frc.team4716.robot.Robot;
+import org.usfirst.frc.team4716.robot.commands.Wait;
+import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,9 +12,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ShootSequence extends CommandGroup {
     
     public  ShootSequence() {
-    	addSequential(new ToggleElevator());
+    	if(Robot.bucket.getElevatorState().equals(Direction.UP)){
+    		addSequential(new ToggleElevator());
+    	}
     	addSequential(new Wait(0.5));
     	addSequential(new LaunchEjectPiston());
+    	if(Robot.bucket.getElevatorState().equals(Direction.DOWN)){
+    		addSequential(new ToggleElevator());
+    	}
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

@@ -1,7 +1,6 @@
-package org.usfirst.frc.team4716.robot.commands;
+package org.usfirst.frc.team4716.robot.commands.Bucket;
 
-import org.usfirst.frc.team4716.robot.commands.Bucket.SetIntakeMotor;
-import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevatorDown;
+import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -12,7 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class IntakeSequence extends CommandGroup {
     
     public  IntakeSequence() {
-    	addSequential(new ToggleElevatorDown());
+    	if(Robot.bucket.getElevatorState().equals(Direction.UP)){
+    		addSequential(new ToggleElevator());
+    	}
     	addParallel(new SetIntakeMotor(Direction.IN));
     	
         // Add Commands here:

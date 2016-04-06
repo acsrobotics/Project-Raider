@@ -3,11 +3,11 @@ package org.usfirst.frc.team4716.robot;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.usfirst.frc.team4716.robot.commands.IntakeSequence;
-import org.usfirst.frc.team4716.robot.commands.ShootSequence;
 import org.usfirst.frc.team4716.robot.commands.Bucket.BucketMove;
+import org.usfirst.frc.team4716.robot.commands.Bucket.IntakeSequence;
 import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
 import org.usfirst.frc.team4716.robot.commands.Bucket.SetIntakeMotor;
+import org.usfirst.frc.team4716.robot.commands.Bucket.ShootSequence;
 import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.SetPosition;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.ToggleAllWheels;
@@ -47,14 +47,14 @@ public class OI {
 //		driveButtons.get(7).whenPressed(new TestLift());
 		
 		//----------------Bucket testing button set------------------------//
+		testButtons.get(0).whenPressed(new ShootSequence());
 		testButtons.get(1).whenPressed(new LaunchEjectPiston());
 		testButtons.get(2).whenPressed(new ToggleElevator());
 		testButtons.get(3).whileHeld(new IntakeSequence());
-		testButtons.get(4).whenPressed(new ShootSequence());
 		testButtons.get(3).whenReleased(new ToggleElevator());
+		testButtons.get(4).whenPressed(new ShootSequence());
 		testButtons.get(5).whileHeld(new BucketMove(Direction.DOWN));
 		testButtons.get(6).whileHeld(new BucketMove(Direction.UP));
-		
 		testButtons.get(9).whileHeld(new SetIntakeMotor(Direction.IN));
 		testButtons.get(10).whileHeld(new SetIntakeMotor(Direction.OUT));
 		
