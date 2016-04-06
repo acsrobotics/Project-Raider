@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 
 import org.usfirst.frc.team4716.robot.Robot;
+import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -204,6 +205,10 @@ public class DriveTrain extends Subsystem {
 //    	System.out.println("Voltage: " + val);
 //    	System.out.println("Value " + ultraTreatAsRaw.getValue() + "\n");
     	return val;
+    }
+    
+    public void setDriveModifier(double modifier){
+    	RobotMap.DRIVE_MODIFIER = modifier;
     }
     
     

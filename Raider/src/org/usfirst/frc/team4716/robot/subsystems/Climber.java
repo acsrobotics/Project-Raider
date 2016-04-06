@@ -65,8 +65,8 @@ public class Climber extends Subsystem {
     	return this.MOTOR_CLIMB;
     }
     
-    public void override(){
-    	overRide = true;
+    public void override(boolean status){
+    	overRide = status;
     }
     
     public double getPosition(){
