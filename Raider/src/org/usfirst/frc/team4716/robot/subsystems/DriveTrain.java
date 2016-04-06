@@ -1,22 +1,18 @@
 package org.usfirst.frc.team4716.robot.subsystems;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.event.ListSelectionEvent;
 
 import org.usfirst.frc.team4716.robot.Robot;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.JoystickDrive;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -83,8 +79,6 @@ public class DriveTrain extends Subsystem {
 		
 		SOLENOID_DRIVE_FRONT_LEFT = new DoubleSolenoid(0,0,1);
 		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(0,4,5);
-		SOLENOID_DRIVE_BACK_LEFT = new DoubleSolenoid(0,2,3);
-		SOLENOID_DRIVE_BACK_RIGHT = new DoubleSolenoid(0,6,7);
 		//ultrasonicLeft = new Ultrasonic(0,1);
 		
 		ultraTreatAsRaw = new AnalogInput(1);
@@ -108,8 +102,6 @@ public class DriveTrain extends Subsystem {
 		
 		LiveWindow.addActuator("DriveTrain", "Front Left Piston", (DoubleSolenoid) SOLENOID_DRIVE_FRONT_LEFT);
 		LiveWindow.addActuator("DriveTrain", "Front Right Piston", (DoubleSolenoid) SOLENOID_DRIVE_FRONT_RIGHT);
-		LiveWindow.addActuator("DriveTrain", "Back Left Piston", (DoubleSolenoid) SOLENOID_DRIVE_BACK_LEFT);
-		LiveWindow.addActuator("DriveTrain", "Back Right Piston", (DoubleSolenoid) SOLENOID_DRIVE_BACK_RIGHT);
 	}
 
     public void initDefaultCommand() {
@@ -151,9 +143,6 @@ public class DriveTrain extends Subsystem {
     	
     	if((code.equals(PositionStatusCode.ALL_OUT) && !this.getPositionStatusCode().equals(PositionStatusCode.ALL_OUT))){
 
-        	this.SOLENOID_DRIVE_BACK_LEFT.set(DoubleSolenoid.Value.kForward);
-        	this.SOLENOID_DRIVE_BACK_RIGHT.set(DoubleSolenoid.Value.kForward);
-        	
         	try {
     			Thread.sleep(500);
     		} catch (InterruptedException e) {
@@ -250,8 +239,6 @@ public class DriveTrain extends Subsystem {
     		DoubleSolenoid.Value backLeft,
     		DoubleSolenoid.Value backRight
     		){
-    	this.SOLENOID_DRIVE_BACK_LEFT.set(backLeft);
-    	this.SOLENOID_DRIVE_BACK_RIGHT.set(backRight);
     	
     	this.SOLENOID_DRIVE_FRONT_LEFT.set(frontLeft);
     	this.SOLENOID_DRIVE_FRONT_RIGHT.set(frontRight);
