@@ -1,8 +1,6 @@
 
 package org.usfirst.frc.team4716.robot;
 
-import java.net.NoRouteToHostException;
-
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoDoNothing;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoForwardReverseDefault;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardHigh;
@@ -10,7 +8,6 @@ import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardLow;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverse;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverseHigh;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
-import org.usfirst.frc.team4716.robot.networking.Client;
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
@@ -38,9 +35,6 @@ public class Robot extends IterativeRobot {
 	public static final Climber    climber    = new Climber();
 	public static OI oi;
 	
-
-	public static       Client     client;
-
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -50,12 +44,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		try {
-			client = new Client("10.47.16.255", 3003);
-		} catch (NoRouteToHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
         chooser = new SendableChooser();
         chooser.addDefault("Nothing", new AutoDoNothing());
         chooser.addObject("Low Forward", new AutoMoveForwardLow());
