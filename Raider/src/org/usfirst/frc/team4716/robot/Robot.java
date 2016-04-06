@@ -1,13 +1,21 @@
 
 package org.usfirst.frc.team4716.robot;
 
-import java.io.FileReader;
+import java.net.NoRouteToHostException;
 
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoDoNothing;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoForwardReverseDefault;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardHigh;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardLow;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverse;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverseHigh;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
+import org.usfirst.frc.team4716.robot.networking.Client;
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
+import org.usfirst.frc.team4716.robot.subsystems.Climber;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,6 +37,9 @@ public class Robot extends IterativeRobot {
 	public static final Bucket     bucket     = new Bucket();
 	public static final Climber    climber    = new Climber();
 	public static OI oi;
+	
+
+	public static       Client     client;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -39,9 +50,22 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		try {
+			client = new Client("10.47.16.255", 3003);
+		} catch (NoRouteToHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         chooser = new SendableChooser();
-        //chooser.addDefault("Nothing", new DoNothing());
-//        chooser.addObject("Low Goal", object);
+        chooser.addDefault("Nothing", new AutoDoNothing());
+        chooser.addObject("Low Forward", new AutoMoveForwardLow());
+        chooser.addObject("High Forward", new AutoMoveForwardHigh());
+        chooser.addObject("Low Forward Reverse", new AutoMoveForwardReverse());
+        chooser.addObject("High Forward Reverse", new AutoMoveForwardReverseHigh());
+        chooser.addObject("Reverse Default", new DriveForwardTime(-0.8,4.0));
+        chooser.addObject("Forward Default", new DriveForwardTime(0.8,5.0));
+        chooser.addObject("Forward Reverse Default", new AutoForwardReverseDefault());
+        
         
         SmartDashboard.putData("Auto mode", chooser);
     }
@@ -106,6 +130,15 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+//    	Robot.client.update();
+//    	RobotMap tempMap = new RobotMap();// just get a dummy object
+//    	try {
+//    		// update RobotMap with new data
+//			TypeBridge.copy(tempMap, Robot.client.getDataObject(new RobotMapMirror().getClass()));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         Scheduler.getInstance().run();
     }
     

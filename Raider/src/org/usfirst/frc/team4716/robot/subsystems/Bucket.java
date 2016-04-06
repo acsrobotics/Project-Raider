@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -93,6 +92,10 @@ public class Bucket extends Subsystem {
     	}
     }
     
+    public void toggleElevatorDown(){
+    	PISTON_ELEVATOR.set(DoubleSolenoid.Value.kReverse);
+    }
+    
     public Direction getElevatorState(){
     	return this.PISTON_ELEVATOR_STATE;
     }
@@ -135,15 +138,23 @@ public class Bucket extends Subsystem {
     }
     
     public void togglePokePosition(){
-    	System.out.println("BIU");
-    	if(this.PISTON_EJECT_STATE.equals(Direction.IN)){
-    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
-    		PISTON_EJECT_STATE = Direction.OUT;
-    	}
-    	else if(this.PISTON_EJECT_STATE.equals(Direction.OUT)){
-			PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
-			PISTON_EJECT_STATE = Direction.IN;
-    	}
+    	
+    	PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
+    	try {
+			Thread.sleep(150);
+			PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+		} catch (InterruptedException e) {
+
+		}
+//    	System.out.println("BIU");
+//    	if(this.PISTON_EJECT_STATE.equals(Direction.IN)){
+//    		PISTON_EJECT.set(DoubleSolenoid.Value.kReverse);
+//    		PISTON_EJECT_STATE = Direction.OUT;
+//    	}
+//    	else if(this.PISTON_EJECT_STATE.equals(Direction.OUT)){
+//			PISTON_EJECT.set(DoubleSolenoid.Value.kForward);
+//			PISTON_EJECT_STATE = Direction.IN;
+//    	}
     }
 
 

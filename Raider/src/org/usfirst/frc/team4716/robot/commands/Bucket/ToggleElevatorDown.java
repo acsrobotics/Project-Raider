@@ -1,16 +1,15 @@
 package org.usfirst.frc.team4716.robot.commands.Bucket;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.Bucket.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class LaunchEjectPiston extends Command {
+public class ToggleElevatorDown extends Command {
 
-    public LaunchEjectPiston() {
+    public ToggleElevatorDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.bucket);
@@ -18,24 +17,7 @@ public class LaunchEjectPiston extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.bucket.togglePokePosition();
-    	
-    	
-//    	if(Robot.bucket.getElevatorState().equals(Direction.DOWN)){
-//	    	if(Robot.bucket.isPoked()){
-//	    		System.out.println("Poker out");
-//	            Robot.bucket.togglePokePosition();
-//	    	}
-//	    	
-//	    	try {
-//				Thread.sleep(150);
-//				Robot.bucket.togglePokePosition();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//    	}
-    	
+    	Robot.bucket.toggleElevatorDown();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -1,12 +1,8 @@
 package org.usfirst.frc.team4716.robot.commands.Climber;
 
-import java.sql.Time;
 import java.util.Calendar;
 
 import org.usfirst.frc.team4716.robot.Robot;
-import org.usfirst.frc.team4716.robot.subsystems.Climber.Climber;
-
-import com.ni.vision.NIVision.CalibrationThumbnailType;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
