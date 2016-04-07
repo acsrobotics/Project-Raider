@@ -61,6 +61,10 @@ public class Climber extends Subsystem {
     	}
     }
     
+    public void lockElevator(){
+    	this.EJECTING_LOCK.set(Value.kForward);
+    }
+    
     public CANTalon getExtensionMotor(){
     	return this.MOTOR_CLIMB;
     }

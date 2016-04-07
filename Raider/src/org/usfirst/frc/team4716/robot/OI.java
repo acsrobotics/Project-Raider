@@ -9,6 +9,7 @@ import org.usfirst.frc.team4716.robot.commands.Bucket.LaunchEjectPiston;
 import org.usfirst.frc.team4716.robot.commands.Bucket.SetIntakeMotor;
 import org.usfirst.frc.team4716.robot.commands.Bucket.ShootSequence;
 import org.usfirst.frc.team4716.robot.commands.Bucket.ToggleElevator;
+import org.usfirst.frc.team4716.robot.commands.Climber.LockElevator;
 import org.usfirst.frc.team4716.robot.commands.Climber.Overide;
 import org.usfirst.frc.team4716.robot.commands.Climber.PullUp;
 import org.usfirst.frc.team4716.robot.commands.Climber.ReleaseElevator;
@@ -49,6 +50,9 @@ public class OI {
 		driveButtons.get(6).whenPressed(new SetDriveModifier(0.8));
 		
 		driveButtons.get(8).whileHeld(new Overide());
+		
+		//---- for testing 
+		driveButtons.get(0).whenPressed(new LockElevator());
 		
 //		driveButtons.get(7).whenPressed(new TestLift());
 		

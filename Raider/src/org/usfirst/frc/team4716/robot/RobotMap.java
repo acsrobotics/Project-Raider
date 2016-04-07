@@ -11,16 +11,7 @@ public class RobotMap {
    							MOTOR_DRIVE_BACK_LEFT_PORT = 6,
    							MOTOR_DRIVE_BACK_RIGHT_PORT = 7;
 	
-	public static int	    SOLENOID_DRIVE_FRONT_LEFT_PORT_A = 0,
-							SOLENOID_DRIVE_FRONT_LEFT_PORT_B = 1,
-							SOLENOID_DRIVE_FRONT_RIGHT_PORT_A = 2,
-							SOLENOID_DRIVE_FRONT_RIGHT_PORT_B = 3,
-							SOLENOID_DRIVE_BACK_LEFT_PORT_A = 4,
-							SOLENOID_DRIVE_BACK_LEFT_PORT_B = 5,
-							SOLENOID_DRIVE_BACK_RIGHT_PORT_A = 6,
-							SOLENOID_DRIVE_BACK_RIGHT_PORT_B = 7,
-							SOLENOID_A = 8,
-							SOLENOID_B = 9;
+
 	public static boolean   IS_UP;
 
 	public static int       GYRO_MAIN_PORT = 0;					//CHANGE PORTS, THEY ARE INCORRECT
@@ -62,9 +53,9 @@ public class RobotMap {
 	
 	//---------------------CLIMBER CONFIG--------------------//
 	
-	public static int EJECT_LOCK_MODULE = 1,
-			          EJECT_LOCK_FORWARD_CH = 8,
-			          EJECT_LOCK_BACKWARD_CH = 9;
+	public static int EJECT_LOCK_MODULE = 0,
+			          EJECT_LOCK_FORWARD_CH = 2,
+			          EJECT_LOCK_BACKWARD_CH = 3;
 	
 	public static int MOTOR_ANGLE_PORT = 4,
 					  MOTOR_EXTENSION_PORT = 5;
