@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	Joystick driveStick = new Joystick(0); // Logitech Dual Action
-	Joystick testStick = new Joystick(5);
+	Joystick testStick = new Joystick(5);  // Logitech Attack 3
 	
 	List<JoystickButton> driveButtons = new ArrayList<JoystickButton>();
 	List<JoystickButton> operatorButtons = new ArrayList<JoystickButton>();
@@ -58,6 +58,7 @@ public class OI {
 		
 		//----------------Bucket testing button set------------------------//
 		operatorButtons.get(0).whenPressed(new ShootSequence());
+		operatorButtons.get(0).whenReleased(new ToggleElevator());
 		operatorButtons.get(1).whileHeld(new IntakeSequence());
 		operatorButtons.get(1).whenReleased(new ToggleElevator());
 		operatorButtons.get(2).whenPressed(new ToggleElevator());

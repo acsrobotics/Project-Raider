@@ -21,16 +21,17 @@ public class PullUp extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.climber.CANInit();
+    	Robot.climber.setElevator(this.setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.setElevator(this.setPoint);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(Robot.climber.getPosition()) > this.setPoint ? true:false;
+        return false;
     }
 
     // Called once after isFinished returns true
