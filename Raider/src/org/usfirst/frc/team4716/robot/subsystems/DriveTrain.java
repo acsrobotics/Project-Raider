@@ -26,10 +26,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem {
 	
 	public enum PositionStatusCode {
-		ALL_IN(new DoubleSolenoid.Value[] {Value.kReverse, Value.kReverse, Value.kReverse, Value.kReverse}),
-		ALL_OUT(new DoubleSolenoid.Value[] {Value.kForward, Value.kForward, Value.kForward, Value.kForward}),
-		FRONT_OUT_BACK_IN(new DoubleSolenoid.Value[] {Value.kForward, Value.kForward, Value.kReverse, Value.kReverse}),
-		FRONT_IN_BACK_OUT(new DoubleSolenoid.Value[] {Value.kReverse, Value.kReverse, Value.kForward, Value.kForward}),
+		ALL_IN(new DoubleSolenoid.Value[] {Value.kReverse, Value.kReverse}),
+		ALL_OUT(new DoubleSolenoid.Value[] {Value.kForward, Value.kForward}),
+		FRONT_OUT_BACK_IN(new DoubleSolenoid.Value[] {Value.kForward, Value.kReverse}),
+		FRONT_IN_BACK_OUT(new DoubleSolenoid.Value[] {Value.kReverse, Value.kForward}),
 		FUBAR(null); // Fucked-Up-Beyond-Recognition
 		
 		DoubleSolenoid.Value[] dsv = new DoubleSolenoid.Value[4];
@@ -48,8 +48,8 @@ public class DriveTrain extends Subsystem {
    							MOTOR_DRIVE_BACK_LEFT,
    							MOTOR_DRIVE_BACK_RIGHT;
 
-	DoubleSolenoid			SOLENOID_DRIVE_FRONT_LEFT,
-							SOLENOID_DRIVE_FRONT_RIGHT;
+	DoubleSolenoid			VALVE_FRONT,
+							VALVE_BACK;
 
 	ADXRS450_Gyro 			gyro;
 	
@@ -67,9 +67,7 @@ public class DriveTrain extends Subsystem {
 	
 	
 	SpeedController motor;
-	//CANTalon encoderTest;
 	
-	//public boolean 	objectDetected;
 	
 	public DriveTrain(){
 		MOTOR_DRIVE_FRONT_LEFT = new Victor(0);
@@ -78,22 +76,14 @@ public class DriveTrain extends Subsystem {
 		MOTOR_DRIVE_BACK_RIGHT = new Victor(7);
 		drive = new RobotDrive(MOTOR_DRIVE_FRONT_LEFT, MOTOR_DRIVE_FRONT_RIGHT, MOTOR_DRIVE_BACK_LEFT, MOTOR_DRIVE_BACK_RIGHT);
 		
-		SOLENOID_DRIVE_FRONT_LEFT = new DoubleSolenoid(0,0,1);
-		SOLENOID_DRIVE_FRONT_RIGHT = new DoubleSolenoid(0,4,5);
+		VALVE_FRONT = new DoubleSolenoid(0,6,7);
+		VALVE_BACK = new DoubleSolenoid(0,4,5);
 		//ultrasonicLeft = new Ultrasonic(0,1);
 		
 		ultraTreatAsRaw = new AnalogInput(1);
 		
-		//encoderTest = new CANTalon(0);
-//		/*Encoder Initialzation*/
-//		encoderDriveLeft = new Encoder(RobotMap.ENCODER_DRIVE_LEFT_PORT_A, RobotMap.ENCODER_DRIVE_LEFT_PORT_B);
-//		encoderDriveRight = new Encoder(RobotMap.ENCODER_DRIVE_RIGHT_PORT_A, RobotMap.ENCODER_DRIVE_RIGHT_PORT_B);
-//		
-//
 //		/*Gyro Initialzation*/
 		gyro = new ADXRS450_Gyro();
-//		gyro = new AnalogGyro(RobotMap.GYRO_MAIN_PORT);
-//		gyro.setSensitivity(RobotMap.GYRO_SENSITIVITY);
 
 		/*LiveWindow Initialzation*/
 		LiveWindow.addActuator("DriveTrain", "Front Left CIM", (Victor) MOTOR_DRIVE_FRONT_LEFT);
@@ -101,8 +91,8 @@ public class DriveTrain extends Subsystem {
 		LiveWindow.addActuator("DriveTrain", "Back Left CIM", (Victor) MOTOR_DRIVE_BACK_LEFT);
 		LiveWindow.addActuator("DriveTrain", "Back Right CIM", (Victor) MOTOR_DRIVE_BACK_RIGHT);
 		
-		LiveWindow.addActuator("DriveTrain", "Front Left Piston", (DoubleSolenoid) SOLENOID_DRIVE_FRONT_LEFT);
-		LiveWindow.addActuator("DriveTrain", "Front Right Piston", (DoubleSolenoid) SOLENOID_DRIVE_FRONT_RIGHT);
+		LiveWindow.addActuator("DriveTrain", "Front Left Piston", (DoubleSolenoid) VALVE_FRONT);
+		LiveWindow.addActuator("DriveTrain", "Front Right Piston", (DoubleSolenoid) VALVE_BACK);
 	}
 
     public void initDefaultCommand() {
@@ -132,13 +122,6 @@ public class DriveTrain extends Subsystem {
     	drive.arcadeDrive(speed, turn);
     }
     
-//    public void setSlowSpeed(double speed){
-//    	motor.set(speed);
-//    }
-    
-//    public CANTalon getEncoder(){
-//    	return this.encoderTest;
-//    }
     
     public void setPosition(PositionStatusCode code){
     	
@@ -151,36 +134,17 @@ public class DriveTrain extends Subsystem {
     			e.printStackTrace();
     		}
         	
-        	this.SOLENOID_DRIVE_FRONT_LEFT.set(DoubleSolenoid.Value.kForward);
-        	this.SOLENOID_DRIVE_FRONT_RIGHT.set(DoubleSolenoid.Value.kForward);
+        	this.VALVE_FRONT.set(DoubleSolenoid.Value.kForward);
+        	this.VALVE_BACK.set(DoubleSolenoid.Value.kForward);
     	} else {
-        	DoubleSolenoid.Value a = code.getDoubleSolenoidArray()[0];
-        	DoubleSolenoid.Value b = code.getDoubleSolenoidArray()[1];
-        	DoubleSolenoid.Value c = code.getDoubleSolenoidArray()[2];
-        	DoubleSolenoid.Value d = code.getDoubleSolenoidArray()[3];
-        	
-        	this.setSolenoidPosition(a, b, c, d);	
+    		
+        	this.setSolenoidPosition(code.getDoubleSolenoidArray()[0]
+        							, code.getDoubleSolenoidArray()[1]);	
     	}
     }
     
     
-    
-//    public void setFrontThing(){
-//    	SOLENOID.set(DoubleSolenoid.Value.kForward);
-//    }
-//    
-//    public void setFrontThingBack(){
-//    	SOLENOID.set(DoubleSolenoid.Value.kReverse);
-//    }
-    
-//    public void setObjectState(boolean set){
-//    	this.objectDetected = set;
-//    }
-//    
-//    public boolean getObjectState(){
-//    	return this.objectDetected;
-//    }
-//    
+
     public double getUltrasonicDistance(){
     	//double val = (ultrasonicLeft.getRangeInches() + ultrasonicRight.getRangeInches())/2;
     	//System.out.println(val);
@@ -239,20 +203,18 @@ public class DriveTrain extends Subsystem {
     }
     
     public void setSolenoidPosition(
-    		DoubleSolenoid.Value frontLeft,
-    		DoubleSolenoid.Value frontRight,
-    		DoubleSolenoid.Value backLeft,
-    		DoubleSolenoid.Value backRight
+    		DoubleSolenoid.Value front,
+    		DoubleSolenoid.Value back
     		){
     	
-    	this.SOLENOID_DRIVE_FRONT_LEFT.set(frontLeft);
-    	this.SOLENOID_DRIVE_FRONT_RIGHT.set(frontRight);
+    	this.VALVE_FRONT.set(front);
+    	this.VALVE_BACK.set(back);
     }
     
     public PositionStatusCode getPositionStatusCode(){
     	DoubleSolenoid.Value[] classSolenoids = new DoubleSolenoid.Value[] {
-    			SOLENOID_DRIVE_FRONT_LEFT.get(), 
-    			SOLENOID_DRIVE_FRONT_RIGHT.get()
+    			VALVE_FRONT.get(), 
+    			VALVE_BACK.get()
     	};
     	
     	PositionStatusCode toReturn = PositionStatusCode.FUBAR;

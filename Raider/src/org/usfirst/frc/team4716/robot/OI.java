@@ -43,11 +43,11 @@ public class OI {
 		//--------------Drivetrain testing button set--------------//
 		driveButtons.get(11).whenPressed(new ToggleAllWheels());
 		
-		driveButtons.get(1).whenPressed(new SetPosition(PositionStatusCode.FRONT_IN_BACK_OUT));
-		driveButtons.get(3).whenPressed(new SetPosition(PositionStatusCode.FRONT_OUT_BACK_IN));
+		driveButtons.get(1).whenPressed(new SetPosition(PositionStatusCode.FRONT_OUT_BACK_IN));
+		driveButtons.get(3).whenPressed(new SetPosition(PositionStatusCode.FRONT_IN_BACK_OUT));
 		
-		driveButtons.get(4).whenPressed(new SetDriveModifier(0.6));
-		driveButtons.get(6).whenPressed(new SetDriveModifier(0.8));
+		driveButtons.get(6).whileHeld(new SetDriveModifier(0.6));
+		driveButtons.get(6).whenReleased(new SetDriveModifier(0.8));
 		
 		driveButtons.get(8).whileHeld(new Overide());
 		
