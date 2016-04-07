@@ -39,15 +39,15 @@ public class Climber extends Subsystem {
     public void CANInit(){
     	MOTOR_CLIMB.enable();
     	
-    	MOTOR_CLIMB.changeControlMode(CANTalon.TalonControlMode.Position);
-    	MOTOR_CLIMB.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-    	MOTOR_CLIMB.setPID(1.0, 0.0, 0.0);
-    	MOTOR_CLIMB.setInverted(false);
-    	MOTOR_CLIMB.setPosition(0);
+    	MOTOR_CLIMB.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+//    	MOTOR_CLIMB.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+//    	MOTOR_CLIMB.setPID(1.0, 0.0, 0.0);
+//    	MOTOR_CLIMB.setInverted(false);
+//    	MOTOR_CLIMB.setPosition(0);
     }
     
-    public void setElevator(double point){
-    	MOTOR_CLIMB.set(point);
+    public void setElevator(double speed){
+    	MOTOR_CLIMB.set(speed);
     }
     
     public void CANHalt(){

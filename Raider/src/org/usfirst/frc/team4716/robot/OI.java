@@ -63,7 +63,7 @@ public class OI {
 		operatorButtons.get(2).whenPressed(new ToggleElevator());
 		
 		operatorButtons.get(3).whenPressed(new ReleaseElevator());
-		operatorButtons.get(4).whileHeld(new PullUp(4000));
+		operatorButtons.get(4).whileHeld(new PullUp(-0.8));
 		
 		operatorButtons.get(5).whileHeld(new BucketMove(Direction.DOWN));
 		operatorButtons.get(6).whileHeld(new BucketMove(Direction.UP));

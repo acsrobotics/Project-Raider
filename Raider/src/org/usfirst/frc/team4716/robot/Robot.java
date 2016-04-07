@@ -7,6 +7,7 @@ import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardHigh;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardLow;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverse;
 import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveForwardReverseHigh;
+import org.usfirst.frc.team4716.robot.commands.Auto.AutoMoveShoot;
 import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveForwardTime;
 //import org.usfirst.frc.team4716.robot.commands.Auto.DoNothing;
 import org.usfirst.frc.team4716.robot.subsystems.Bucket;
@@ -51,9 +52,10 @@ public class Robot extends IterativeRobot {
         chooser.addObject("High Forward", new AutoMoveForwardHigh());
         chooser.addObject("Low Forward Reverse", new AutoMoveForwardReverse());
         chooser.addObject("High Forward Reverse", new AutoMoveForwardReverseHigh());
-        chooser.addObject("Reverse Default", new DriveForwardTime(-0.8,4.0));
-        chooser.addObject("Forward Default", new DriveForwardTime(0.8,5.0));
+        chooser.addObject("Reverse Default", new DriveForwardTime(-0.8,3.5));
+        chooser.addObject("Forward Default", new DriveForwardTime(0.8,3.5));
         chooser.addObject("Forward Reverse Default", new AutoForwardReverseDefault());
+        chooser.addObject("Low goal shot", new AutoMoveShoot());
         
         
         SmartDashboard.putData("Auto mode", chooser);
