@@ -1,39 +1,11 @@
+/bin/
+/target/
 
-.metadata
-bin/
-tmp/
-build/
-dist/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.recommenders
+# Eclipse
+.classpath
+.project
 
-# External tool builders
-.externalToolBuilders/
+# IntelliJ
+.idea/
+*.iml
 
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-
-# Java annotation processor (APT)
-.factorypath
-
-# sbteclipse plugin
-.target
-
-# Tern plugin
-.tern-project
-
-# TeXlipse plugin
-.texlipse
-
-# STS (Spring Tool Suite)
-.springBeans
-
-# Code Recommenders
-.recommenders/
